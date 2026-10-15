@@ -1,0 +1,28 @@
+{
+  "name": "xinhuo-ember",
+  "version": "1.0.0",
+  "description": "心火 EMBER — 掷骰问命，以火养习。一个不像打卡的自律小程序。",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "habit-tracker",
+    "self-discipline",
+    "gamification",
+    "intrinsic-motivation",
+    "vanilla-js",
+    "single-file",
+    "pwa",
+    "offline-first",
+    "local-first",
+    "习惯养成",
+    "自律",
+    "内驱力"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  }
+}

@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>心火 EMBER · 掷骰问命，以火养习</title>
+<!-- ═══ 分享卡片（微信/小红书/QQ 抓取用） ═══ -->
+<meta name="description" content="不打卡、不催你、不排名。掷骰问命领一张签，做了就烧掉它。21 天后，火会给你写一封信。">
+<meta property="og:title" content="心火 EMBER · 掷骰问命，以火养习">
+<meta property="og:description" content="不是又一个打卡工具。没有积分、没有商城、没有排行榜——奖赏只有三样：变大的火、解锁的称号、月底那封信。">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#141109">
+<!-- ═══ PWA：可"添加到主屏幕"，像 App 一样全屏运行 ═══ -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="心火">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23141109'/%3E%3Cpath d='M90 30c-14 24-6 38 2 52 6 11 8 22 4 33-3 9-12 15-22 14 12 12 30 12 42 0 10-10 12-24 6-37-9-20-24-40-32-62z' fill='%23e9b266'/%3E%3Cpath d='M90 62c-7 13-3 21 1 29 3 6 4 12 2 18-1 5-6 8-11 7 6 6 15 6 21 0 5-5 6-12 3-19-5-11-12-22-16-35z' fill='%23fff3d6'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23141109'/%3E%3Cpath d='M32 12c-5 8-2 13 1 18 2 4 3 8 1 11-1 3-4 5-7 4 4 4 10 4 14 0 3-3 4-8 2-12-3-7-8-13-11-21z' fill='%23e9b266'/%3E%3C/svg%3E">
+<style>
+/* ═══ 字体：全部系统字体栈，零外链、国内秒开 ═══ */
+:root{
+  --font-cn:'Songti SC','STSong','SimSun','Noto Serif CJK SC','Source Han Serif SC','Source Han Serif CN','Songti TC',serif;
+  --font-en:'Georgia','Times New Roman','Times','Baskerville',serif;
+}
+:root{
+  --ink:#141109;
+  --ink2:#1b1710;
+  --ink3:#221d13;
+  --line:rgba(233,178,102,.16);
+  --line-strong:rgba(233,178,102,.34);
+  --paper:#ede1c8;
+  --muted:#9d8d72;
+  --faint2:#655842;
+  --amber:#e9b266;
+  --amber-deep:#c9762e;
+  --grow:#d9a441;
+  --jade:#8fae97;
+  --fate:#c05a4e;
+  --seal:#b3402f;
+  --fscale:1;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  background:#0b0906;
+  font-family:var(--font-cn);
+  color:var(--paper);
+  display:grid;place-items:center;
+  min-height:100vh;
+  overflow:hidden;
+}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+input{font-family:inherit}
+
+/* ============ 手机壳 ============ */
+.shell-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
+.shell-caption{font-size:11px;letter-spacing:.4em;color:#4a4030;text-indent:.4em;user-select:none}
+.app{
+  width:min(430px,100vw);
+  height:min(880px,calc(100vh - 48px));
+  background:var(--ink);
+  border:1px solid rgba(233,178,102,.12);
+  border-radius:34px;
+  overflow:hidden;
+  position:relative;
+  display:flex;flex-direction:column;
+  box-shadow:0 40px 120px rgba(0,0,0,.7), inset 0 0 0 1px rgba(0,0,0,.6);
+}
+@media (max-width:480px){
+  .app{width:100vw;height:100dvh;border-radius:0;border:none}
+  .shell-caption{display:none}
+}
+/* 纸纹 & 夜色氛围 */
+.app::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgba(233,178,102,.07), transparent 60%),
+    radial-gradient(90% 50% at 50% 110%, rgba(181,88,46,.06), transparent 60%);
+}
+.app::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:60;opacity:.5;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+}
+
+/* ============ 屏幕容器 ============ */
+.screen{position:absolute;inset:0;display:none;flex-direction:column;z-index:1;overflow-y:auto;overscroll-behavior:contain}
+.screen.active{display:flex}
+.screen::-webkit-scrollbar{width:0}
+.screen-inner{padding:26px 22px 120px;flex:1}
+
+/* ============ 顶栏 ============ */
+.topbar{
+  padding:20px 22px 14px;display:flex;align-items:flex-end;justify-content:space-between;
+  border-bottom:1px solid var(--line);position:relative;z-index:2;flex-shrink:0;
+}
+.topbar .who{display:flex;align-items:center;gap:10px}
+.topbar .name{font-size:19px;font-weight:700;letter-spacing:.06em}
+.title-seal{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;background:var(--seal);color:#f3e4c2;
+  font-size:12px;font-weight:700;border-radius:5px;
+  box-shadow:0 2px 8px rgba(179,64,47,.4);transform:rotate(-4deg);
+}
+.topbar .cycle{font-size:11px;color:var(--muted);letter-spacing:.28em;text-align:right;line-height:1.9}
+.topbar .cycle b{color:var(--amber);font-weight:500;font-family:var(--font-en);font-size:14px;letter-spacing:.1em}
+
+/* ============ 祭坛（首页） ============ */
+.altar-stage{position:relative;display:grid;place-items:center;margin:6px 0 4px}
+.ring-svg{width:252px;height:252px;display:block}
+.flame-wrap{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.flame-svg{width:120px;height:150px;transform:scale(var(--fscale));transform-origin:50% 92%;transition:transform 1.2s var(--ease);filter:drop-shadow(0 0 26px rgba(245,165,74,.34))}
+.fl-g{animation:flick 3.2s ease-in-out infinite;transform-origin:50% 95%}
+.fl-g2{animation:flick 2.1s ease-in-out infinite reverse;transform-origin:50% 95%}
+@keyframes flick{
+  0%,100%{transform:scale(1,1) skewX(0deg)}
+  25%{transform:scale(.97,1.03) skewX(1.6deg)}
+  50%{transform:scale(1.02,.985) skewX(-1.2deg)}
+  75%{transform:scale(.985,1.015) skewX(.8deg)}
+}
+.spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#ffce8a;bottom:44%;opacity:0;animation:rise 4.6s linear infinite;box-shadow:0 0 6px #f5a54a}
+.spark:nth-child(1){left:46%;animation-delay:.2s}
+.spark:nth-child(2){left:52%;animation-delay:1.7s;animation-duration:5.4s}
+.spark:nth-child(3){left:49%;animation-delay:3.1s;animation-duration:4.1s}
+.spark:nth-child(4){left:55%;animation-delay:2.4s;width:2px;height:2px}
+@keyframes rise{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  12%{opacity:.9}
+  100%{transform:translateY(-96px) scale(.2);opacity:0}
+}
+.altar-caption{text-align:center;margin-top:-2px}
+.altar-caption .cn{font-size:12px;color:var(--muted);letter-spacing:.5em;text-indent:.5em}
+.stat-row{display:flex;justify-content:center;gap:26px;margin-top:14px}
+.stat{display:flex;flex-direction:column;align-items:center;gap:3px}
+.stat b{font-family:var(--font-en);font-size:26px;font-weight:600;color:var(--amber);line-height:1}
+.stat span{font-size:10px;letter-spacing:.3em;text-indent:.3em;color:var(--faint2)}
+
+/* 分节标题 */
+.sec-head{display:flex;align-items:baseline;gap:12px;margin:30px 0 14px}
+.sec-head h2{font-size:14px;font-weight:700;letter-spacing:.34em}
+.sec-head .sub{font-size:10px;color:var(--faint2);letter-spacing:.2em}
+.sec-head::after{content:'';flex:1;height:1px;background:var(--line)}
+
+/* ============ 命签卡 ============ */
+.task-list{display:flex;flex-direction:column;gap:12px}
+.tcard{
+  position:relative;background:linear-gradient(160deg,var(--ink3),var(--ink2));
+  border:1px solid var(--line);border-radius:10px;padding:16px 16px 14px 58px;
+  transition:transform .35s var(--ease), opacity .5s, border-color .3s;
+}
+.tcard:active{transform:scale(.985)}
+.tcard.burning{animation:burnup .9s var(--ease) forwards}
+@keyframes burnup{
+  0%{filter:brightness(1)}
+  30%{filter:brightness(1.9) saturate(1.4);transform:translateY(-3px)}
+  100%{filter:brightness(3);opacity:0;transform:translateY(-14px) scale(1.02)}
+}
+.tcard .seal{
+  position:absolute;left:14px;top:16px;width:30px;height:30px;border-radius:6px;
+  display:grid;place-items:center;font-size:14px;font-weight:700;color:#f3e4c2;
+  transform:rotate(-4deg);box-shadow:0 2px 10px rgba(0,0,0,.4);
+}
+.tcard[data-cat=grow] .seal{background:var(--grow)}
+.tcard[data-cat=habit] .seal{background:#5c7a66}
+.tcard[data-cat=fate] .seal{background:var(--seal)}
+.tcard .t-name{font-size:17px;font-weight:700;letter-spacing:.04em;line-height:1.4}
+.tcard .t-desc{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.7}
+.tcard .t-why{font-size:11.5px;color:#b99e6f;margin-top:8px;line-height:1.7;font-style:italic}
+.tcard .t-why::before{content:'「';opacity:.6}
+.tcard .t-why::after{content:'」';opacity:.6}
+.tcard .t-meta{font-size:10px;letter-spacing:.22em;color:var(--faint2);margin-top:2px}
+.tcard .t-meta .rare{color:var(--fate)}
+.tcard .t-actions{display:flex;gap:10px;margin-top:12px;align-items:center}
+.btn-done{
+  flex:1;padding:10px 0;border:1px solid var(--line-strong);border-radius:7px;
+  font-size:13px;letter-spacing:.28em;text-indent:.28em;color:var(--amber);
+  transition:background .25s,border-color .25s,transform .12s;
+}
+.btn-done:hover{background:rgba(233,178,102,.08)}
+.btn-done:active{transform:translateY(1px)}
+.btn-release{font-size:11px;color:var(--faint2);letter-spacing:.15em;padding:10px 4px;transition:color .2s}
+.btn-release:hover{color:var(--muted)}
+/* 空签位 */
+.slot-empty{
+  border:1px dashed rgba(233,178,102,.22);border-radius:10px;
+  padding:20px 16px;text-align:center;color:var(--faint2);
+}
+.slot-empty .z{font-size:12px;letter-spacing:.3em;text-indent:.3em}
+.slot-empty button{display:block;margin:10px auto 0;font-size:13px;color:var(--amber);letter-spacing:.2em;border-bottom:1px solid transparent;padding:4px 2px;transition:border-color .2s}
+.slot-empty button:hover{border-color:var(--amber)}
+
+/* 主行动按钮 */
+.big-actions{display:flex;flex-direction:column;gap:10px;margin-top:26px}
+.btn-night{
+  padding:15px 0;border:1px solid var(--line-strong);border-radius:9px;text-align:center;
+  font-size:14px;letter-spacing:.4em;text-indent:.4em;color:var(--paper);
+  background:linear-gradient(180deg,rgba(233,178,102,.07),transparent);
+  transition:background .3s,transform .12s;
+}
+.btn-night:hover{background:rgba(233,178,102,.12)}
+.btn-night:active{transform:translateY(1px)}
+.btn-night small{display:block;font-size:10px;color:var(--faint2);letter-spacing:.24em;margin-top:5px;text-indent:.24em}
+
+/* ============ 掷骰 ============ */
+.dice-hero{display:flex;flex-direction:column;align-items:center;padding-top:18px}
+.dice-stage{width:230px;height:230px;display:grid;place-items:center;perspective:760px;margin-top:8px}
+.dice{
+  width:110px;height:110px;position:relative;transform-style:preserve-3d;
+  transition:transform 2.6s cubic-bezier(.15,.85,.25,1);
+}
+.face{
+  position:absolute;width:110px;height:110px;display:grid;place-items:center;
+  background:linear-gradient(155deg,#2a2318,#191510);
+  border:1px solid var(--line-strong);border-radius:14px;
+  font-size:44px;font-weight:900;color:var(--amber);
+  text-shadow:0 0 22px rgba(233,178,102,.25);
+  box-shadow:inset 0 0 26px rgba(0,0,0,.5);
+}
+.face small{position:absolute;bottom:10px;font-size:9px;letter-spacing:.3em;color:var(--faint2);font-weight:400;text-shadow:none}
+.f1{transform:translateZ(55px)}
+.f6{transform:rotateY(180deg) translateZ(55px)}
+.f3{transform:rotateY(90deg) translateZ(55px)}
+.f4{transform:rotateY(-90deg) translateZ(55px)}
+.f5{transform:rotateX(90deg) translateZ(55px);color:#d98a7a}
+.f2{transform:rotateX(-90deg) translateZ(55px)}
+.dice-shadow{width:120px;height:14px;border-radius:50%;background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.55),transparent 70%);margin-top:-88px;transition:transform 2.6s cubic-bezier(.15,.85,.25,1)}
+.btn-roll{
+  margin-top:64px;padding:16px 54px;border:1px solid var(--amber);border-radius:9px;
+  font-size:16px;letter-spacing:.5em;text-indent:.5em;color:var(--amber);
+  background:linear-gradient(180deg,rgba(233,178,102,.1),rgba(233,178,102,.02));
+  transition:background .3s,transform .12s,opacity .3s;
+}
+.btn-roll:hover{background:rgba(233,178,102,.16)}
+.btn-roll:active{transform:translateY(1px) scale(.99)}
+.btn-roll:disabled{opacity:.35;cursor:default}
+.dice-legend{display:flex;gap:18px;margin-top:22px;justify-content:center;flex-wrap:wrap}
+.dice-legend span{font-size:10.5px;letter-spacing:.16em;color:var(--faint2)}
+.dice-legend b{font-weight:500}
+.dice-legend .lg-g b{color:var(--grow)}
+.dice-legend .lg-h b{color:var(--jade)}
+.dice-legend .lg-f b{color:var(--fate)}
+.dice-note{text-align:center;font-size:11.5px;color:var(--muted);margin-top:30px;line-height:2;letter-spacing:.05em;padding:0 12px}
+
+/* 揭签卡 */
+.reveal-zone{margin-top:30px;perspective:900px;display:none}
+.reveal-zone.show{display:block}
+.card3d{position:relative;transform-style:preserve-3d;transition:transform .9s var(--ease)}
+.card3d.flipped{transform:rotateY(180deg)}
+.cface{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cfront{
+  height:210px;border:1px solid var(--line-strong);border-radius:12px;
+  background:
+    radial-gradient(80% 60% at 50% 30%,rgba(233,178,102,.09),transparent),
+    linear-gradient(165deg,var(--ink3),var(--ink2));
+  display:grid;place-items:center;
+}
+.cfront .sigil{font-size:56px;font-weight:900;color:rgba(233,178,102,.85);text-shadow:0 0 30px rgba(233,178,102,.3)}
+.cfront .hint{font-size:10px;letter-spacing:.4em;text-indent:.4em;color:var(--faint2);margin-top:10px}
+.cfront>div{display:flex;flex-direction:column;align-items:center}
+.cback{
+  position:absolute;inset:0;transform:rotateY(180deg);
+  border:1px solid var(--line-strong);border-radius:12px;padding:22px 20px;
+  background:
+    radial-gradient(90% 50% at 50% 0%,rgba(233,178,102,.1),transparent),
+    linear-gradient(165deg,var(--ink3),var(--ink2));
+  display:flex;flex-direction:column;justify-content:center;
+}
+.cback .cb-meta{font-size:10px;letter-spacing:.3em;color:var(--faint2);display:flex;justify-content:space-between}
+.cback .cb-name{font-size:21px;font-weight:900;margin:12px 0 8px;letter-spacing:.04em;line-height:1.5}
+.cback .cb-desc{font-size:12.5px;color:var(--muted);line-height:1.9}
+.cback .cb-why{font-size:12px;color:#b99e6f;font-style:italic;margin-top:12px;line-height:1.8}
+.reveal-actions{display:flex;gap:10px;margin-top:16px;transform-style:preserve-3d}
+.btn-accept{
+  flex:1;padding:13px 0;border-radius:8px;text-align:center;
+  background:var(--amber);color:#231a0d;font-size:14px;font-weight:700;letter-spacing:.3em;text-indent:.3em;
+  transition:transform .12s,filter .2s;
+}
+.btn-accept:hover{filter:brightness(1.08)}
+.btn-accept:active{transform:translateY(1px)}
+.btn-reroll,.btn-decline{
+  padding:13px 18px;border:1px solid var(--line);border-radius:8px;font-size:12px;
+  color:var(--muted);letter-spacing:.1em;transition:color .2s,border-color .2s;
+}
+.btn-reroll:hover:not(:disabled),.btn-decline:hover{color:var(--paper);border-color:var(--line-strong)}
+.btn-reroll:disabled{opacity:.35;cursor:default}
+.btn-custom{
+  padding:13px 14px;border:1px dashed var(--line-strong);border-radius:8px;
+  font-size:12px;color:var(--amber);letter-spacing:.14em;text-indent:.14em;
+  transition:color .2s,border-color .2s,background .2s;
+}
+.btn-custom:hover{color:#fff;border-color:var(--amber);background:rgba(233,178,102,.06)}
+.custom-input,.custom-textarea{
+  width:100%;background:var(--ink3);border:1px solid var(--line-strong);border-radius:8px;
+  padding:11px 14px;font-size:14px;color:var(--paper);outline:none;letter-spacing:.04em;
+  margin-top:10px;font-family:inherit;
+}
+.custom-input:focus,.custom-textarea:focus{border-color:var(--amber)}
+.custom-textarea{height:70px;resize:none;font-size:12.5px;line-height:1.75;color:var(--muted);font-family:inherit}
+.custom-lbl{font-size:10px;letter-spacing:.3em;text-indent:.3em;color:var(--faint2);margin-top:16px;text-align:left}
+.custom-cat{display:flex;gap:8px;margin-top:10px}
+.custom-cat button{
+  flex:1;padding:10px 0;border:1px solid var(--line);border-radius:7px;
+  font-size:12px;letter-spacing:.2em;text-indent:.2em;color:var(--muted);
+  transition:all .2s;cursor:pointer;
+}
+.custom-cat button.on{border-color:var(--amber);color:var(--amber);background:rgba(233,178,102,.07)}
+.x-btn{
+  position:absolute;top:14px;right:16px;width:24px;height:24px;border-radius:50%;
+  font-size:14px;color:var(--faint2);transition:color .2s;line-height:1;padding:0;
+}
+.x-btn:hover{color:var(--paper)}
+
+/* ============ 月签报告 ============ */
+.report-hero{text-align:center;padding:10px 0 4px}
+.report-hero .rh-kicker{font-size:10px;letter-spacing:.5em;text-indent:.5em;color:var(--faint2)}
+.report-hero h1{font-size:30px;font-weight:900;letter-spacing:.12em;margin:14px 0 8px}
+.report-hero .rh-sub{font-size:12px;color:var(--muted);letter-spacing:.14em;line-height:2}
+.rpt-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:24px}
+.rpt-stats .cell{background:var(--ink2);padding:14px 6px;text-align:center}
+.rpt-stats b{display:block;font-family:var(--font-en);font-size:24px;font-weight:600;color:var(--amber)}
+.rpt-stats span{font-size:9.5px;letter-spacing:.2em;color:var(--faint2)}
+.rpt-block{margin-top:26px}
+.rpt-block h3{font-size:12px;letter-spacing:.4em;color:var(--amber);font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.rpt-block h3::after{content:'';flex:1;height:1px;background:var(--line)}
+.rpt-block p{font-size:13px;line-height:2.1;color:#d6c7ab;letter-spacing:.02em}
+.rpt-block p+p{margin-top:10px}
+.rpt-block p em{color:var(--amber);font-style:normal}
+.dist-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.dist-row .dl{width:52px;font-size:11px;letter-spacing:.2em;color:var(--muted);text-align:right;flex-shrink:0}
+.dist-bar{flex:1;height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
+.dist-bar i{display:block;height:100%;border-radius:4px;width:0;transition:width 1.2s var(--ease)}
+.dist-row[data-c=grow] i{background:var(--grow)}
+.dist-row[data-c=habit] i{background:var(--jade)}
+.dist-row[data-c=fate] i{background:var(--fate)}
+.dist-row .dv{width:26px;font-family:var(--font-en);font-size:15px;color:var(--muted)}
+.sug-list{list-style:none}
+.sug-list li{position:relative;padding:0 0 0 22px;font-size:13px;line-height:2.05;color:#d6c7ab}
+.sug-list li::before{content:'·';position:absolute;left:6px;color:var(--amber);font-weight:900}
+.award-box{border:1px solid var(--line-strong);border-radius:10px;padding:18px 20px;background:rgba(233,178,102,.04);display:flex;align-items:center;gap:16px}
+.award-box .big-seal{width:52px;height:52px;border-radius:9px;background:var(--seal);display:grid;place-items:center;font-size:24px;font-weight:900;color:#f3e4c2;transform:rotate(-5deg);flex-shrink:0;box-shadow:0 4px 16px rgba(179,64,47,.35)}
+.award-box .ab-t{font-size:10px;letter-spacing:.34em;color:var(--faint2)}
+.award-box .ab-n{font-size:19px;font-weight:900;margin:4px 0 2px;letter-spacing:.1em}
+.award-box .ab-d{font-size:11.5px;color:var(--muted);line-height:1.7}
+/* 意向问卷 */
+.intn-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.intn{
+  border:1px solid var(--line);border-radius:10px;padding:16px 14px;text-align:left;
+  transition:border-color .25s,background .25s,transform .15s;
+}
+.intn:active{transform:scale(.98)}
+.intn .i-n{font-size:14px;font-weight:700;letter-spacing:.1em}
+.intn .i-d{font-size:10.5px;color:var(--faint2);margin-top:6px;line-height:1.7;letter-spacing:.04em}
+.intn.on{border-color:var(--amber);background:rgba(233,178,102,.07)}
+.intn.on .i-n{color:var(--amber)}
+.intn .i-dot{width:16px;height:16px;border:1px solid var(--faint2);border-radius:50%;display:grid;place-items:center;margin-bottom:10px;transition:border-color .25s}
+.intn.on .i-dot{border-color:var(--amber)}
+.intn.on .i-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 8px rgba(233,178,102,.6)}
+.next-pool .tcard{margin-bottom:10px;padding-left:56px}
+.btn-next-cycle{
+  width:100%;margin-top:26px;padding:16px 0;border-radius:9px;text-align:center;
+  background:linear-gradient(180deg,#f0be74,#d08a36);color:#241a0c;
+  font-size:15px;font-weight:900;letter-spacing:.34em;text-indent:.34em;
+  box-shadow:0 8px 30px rgba(209,138,54,.25);transition:filter .2s,transform .12s;
+}
+.btn-next-cycle:hover{filter:brightness(1.06)}
+.btn-next-cycle:active{transform:translateY(1px)}
+
+/* ============ 藏（图鉴） ============ */
+.imp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.imp{
+  border:1px solid var(--line);border-radius:9px;padding:13px 8px 11px;text-align:center;
+  background:linear-gradient(170deg,var(--ink3),var(--ink2));min-height:86px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+}
+.imp .i-seal{width:30px;height:30px;border-radius:6px;display:grid;place-items:center;font-size:13px;font-weight:700;color:#f3e4c2;transform:rotate(-4deg)}
+.imp[data-cat=grow] .i-seal{background:var(--grow)}
+.imp[data-cat=habit] .i-seal{background:#5c7a66}
+.imp[data-cat=fate] .i-seal{background:var(--seal)}
+.imp .i-n{font-size:10.5px;color:var(--muted);line-height:1.5;letter-spacing:.02em}
+.imp.locked{opacity:.28;filter:grayscale(1)}
+.ttl-list{display:flex;flex-direction:column;gap:10px}
+.ttl{
+  border:1px solid var(--line);border-radius:9px;padding:13px 16px;
+  display:flex;align-items:center;gap:14px;background:linear-gradient(170deg,var(--ink3),var(--ink2));
+}
+.ttl .title-seal{width:32px;height:32px;font-size:13px;flex-shrink:0}
+.ttl .tt-n{font-size:14px;font-weight:700;letter-spacing:.08em}
+.ttl .tt-d{font-size:10.5px;color:var(--faint2);margin-top:3px;letter-spacing:.03em}
+.ttl.locked{opacity:.3}
+.ttl.locked .title-seal{background:#3a332a;color:#7a6f5c;box-shadow:none}
+.empty-note{text-align:center;color:var(--faint2);font-size:12px;letter-spacing:.2em;line-height:2.4;padding:26px 0}
+
+/* ============ 设置 ============ */
+.set-block{margin-bottom:28px}
+.set-block h3{font-size:12px;letter-spacing:.4em;color:var(--amber);font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.set-block h3::after{content:'';flex:1;height:1px;background:var(--line)}
+.set-block p{font-size:12.5px;color:var(--muted);line-height:2.1;letter-spacing:.03em}
+.sand-row{display:flex;gap:10px;margin-top:4px}
+.sand-btn{
+  flex:1;padding:12px 0;border:1px solid var(--line);border-radius:8px;
+  font-size:12px;letter-spacing:.14em;color:var(--muted);transition:color .2s,border-color .2s;
+}
+.sand-btn:hover{color:var(--amber);border-color:var(--line-strong)}
+.danger-link{font-size:11px;color:var(--faint2);letter-spacing:.2em;margin-top:16px;border-bottom:1px dashed var(--faint2);padding-bottom:2px;transition:color .2s}
+.danger-link:hover{color:var(--fate)}
+
+/* ============ 底部导航 ============ */
+.tabbar{
+  position:absolute;bottom:0;left:0;right:0;z-index:20;
+  display:flex;border-top:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(20,17,9,.86),rgba(20,17,9,.98));
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.tab{
+  flex:1;padding:12px 0 10px;display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--faint2);transition:color .25s;position:relative;
+}
+.tab .t-g{font-size:19px;font-weight:900;letter-spacing:0}
+.tab .t-l{font-size:9px;letter-spacing:.3em;text-indent:.3em}
+.tab.on{color:var(--amber)}
+.tab.on::before{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:34px;height:2px;background:var(--amber);border-radius:1px;box-shadow:0 0 10px rgba(233,178,102,.6)}
+.tab .badge{position:absolute;top:6px;right:calc(50% - 22px);width:7px;height:7px;border-radius:50%;background:var(--seal);box-shadow:0 0 8px rgba(192,90,78,.8);display:none}
+.tab .badge.show{display:block}
+
+/* ============ 开场 ============ */
+.onboard-hero{text-align:center;margin:16px 0 8px}
+.onboard-hero .oh-mark{font-size:11px;letter-spacing:.7em;text-indent:.7em;color:var(--faint2)}
+.onboard-hero h1{font-size:42px;font-weight:900;letter-spacing:.22em;margin:16px 0 4px;text-indent:.22em}
+.onboard-hero .oh-en{font-family:var(--font-en);font-size:15px;letter-spacing:.55em;text-indent:.55em;color:var(--amber);font-style:italic}
+.onboard-hero .oh-line{width:56px;height:1px;background:var(--line-strong);margin:22px auto}
+.onboard-hero .oh-creed{font-size:12.5px;color:var(--muted);line-height:2.4;letter-spacing:.12em}
+.ob-label{font-size:11px;letter-spacing:.4em;color:var(--amber);margin:30px 0 12px;font-weight:500}
+.ob-name{
+  width:100%;background:none;border:none;border-bottom:1px solid var(--line-strong);
+  padding:10px 2px;font-size:18px;color:var(--paper);letter-spacing:.1em;outline:none;
+  transition:border-color .3s;text-align:center;
+}
+.ob-name:focus{border-color:var(--amber)}
+.ob-name::placeholder{color:#565043;font-size:14px;letter-spacing:.2em}
+.btn-ignite{
+  width:100%;margin-top:34px;padding:17px 0;border-radius:9px;
+  background:linear-gradient(180deg,#f0be74,#cf8433);color:#241a0c;
+  font-size:15px;font-weight:900;letter-spacing:.4em;text-indent:.4em;
+  box-shadow:0 10px 36px rgba(209,138,54,.28);transition:filter .2s,transform .12s;
+}
+.btn-ignite:hover{filter:brightness(1.06)}
+.btn-ignite:active{transform:translateY(1px)}
+.ob-foot{text-align:center;font-size:10.5px;color:var(--faint2);letter-spacing:.24em;margin-top:18px;line-height:2.2}
+
+/* ============ 浮层：toast / 夜幕 / 称号 ============ */
+.toast{
+  position:absolute;top:74px;left:50%;transform:translate(-50%,-12px);z-index:50;
+  background:rgba(34,28,17,.96);border:1px solid var(--line-strong);border-radius:10px;
+  padding:13px 26px;text-align:center;opacity:0;pointer-events:none;
+  transition:opacity .45s var(--ease),transform .45s var(--ease);
+  max-width:82%;box-shadow:0 14px 44px rgba(0,0,0,.5);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast .t-main{font-size:13.5px;letter-spacing:.08em;line-height:1.8}
+.toast .t-sub{font-size:10px;color:var(--faint2);letter-spacing:.3em;margin-top:4px}
+.nightveil{
+  position:absolute;inset:0;z-index:55;background:#0a0805;opacity:0;pointer-events:none;
+  transition:opacity .7s;display:grid;place-items:center;
+}
+.nightveil.on{opacity:.96;pointer-events:auto}
+.nightveil .nv-t{font-size:13px;letter-spacing:.6em;text-indent:.6em;color:var(--muted);animation:nvbreathe 2s ease-in-out infinite}
+@keyframes nvbreathe{0%,100%{opacity:.45}50%{opacity:1}}
+.modal{
+  position:absolute;inset:0;z-index:58;display:none;place-items:center;
+  background:rgba(8,6,3,.9);
+}
+.modal.show{display:grid}
+.modal-box{
+  width:82%;max-width:320px;background:var(--ink2);border:1px solid var(--line-strong);
+  border-radius:14px;padding:34px 26px;text-align:center;
+  animation:modalin .55s var(--ease);
+}
+@keyframes modalin{from{transform:scale(.9) translateY(12px);opacity:0}to{transform:none;opacity:1}}
+.modal-box .m-k{font-size:10px;letter-spacing:.5em;text-indent:.5em;color:var(--faint2)}
+.modal-box .m-seal{
+  width:66px;height:66px;margin:22px auto 18px;border-radius:13px;background:var(--seal);
+  display:grid;place-items:center;font-size:30px;font-weight:900;color:#f3e4c2;
+  transform:rotate(-6deg);box-shadow:0 8px 30px rgba(179,64,47,.4);
+  animation:sealstamp .6s cubic-bezier(.2,1.6,.4,1);
+}
+@keyframes sealstamp{from{transform:rotate(-6deg) scale(1.7);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:1}}
+.modal-box .m-n{font-size:23px;font-weight:900;letter-spacing:.16em}
+.modal-box .m-d{font-size:12px;color:var(--muted);margin-top:12px;line-height:2;letter-spacing:.06em}
+.modal-box .btn-accept{margin-top:24px;width:100%;padding:12px 0;font-size:13px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.15s!important}
+}
+
+/* ============ 引导 ============ */
+.guide-mask{position:absolute;inset:0;z-index:70;background:rgba(6,5,2,.5);pointer-events:none;animation:maskin .4s var(--ease);transition:background .4s}
+/* 聚光框：靠超大面积 box-shadow 压暗四周，框内保持 100% 原始清晰度（无任何滤镜/遮罩） */
+.guide-spot{
+  position:absolute;border:1.5px solid var(--amber);border-radius:14px;
+  box-shadow:0 0 0 9999px rgba(6,5,2,.5),0 0 0 4px rgba(233,178,102,.18),0 0 56px rgba(233,178,102,.4);
+  transition:left .5s var(--ease),top .5s var(--ease),width .5s var(--ease),height .5s var(--ease);
+  pointer-events:none;z-index:71;
+}
+.guide-spot::after{
+  content:'';position:absolute;inset:-7px;border-radius:18px;
+  box-shadow:inset 0 0 0 2px rgba(233,178,102,.4);
+  animation:spotpulse 2s ease-in-out infinite;
+}
+@keyframes spotpulse{
+  0%,100%{opacity:.6;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.02)}
+}
+.guide-tip{
+  position:absolute;z-index:72;width:300px;background:#1e1910;
+  border:1px solid rgba(233,178,102,.42);border-radius:14px;padding:18px 20px 16px;
+  animation:tippop .45s var(--ease);
+  box-shadow:0 22px 64px rgba(0,0,0,.78),0 0 0 1px rgba(0,0,0,.55);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.guide-tip .gt-step{font-size:10.5px;letter-spacing:.42em;color:var(--amber);font-weight:700}
+.guide-tip .gt-t{font-size:14px;line-height:1.95;margin:10px 0 14px;color:#efe3cb;letter-spacing:.03em}
+.guide-tip .gt-t b{color:#fff8e8;font-weight:700}
+.guide-tip .gt-foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.guide-tip .gt-dots{display:flex;gap:6px}
+.guide-tip .gt-dots i{width:5px;height:5px;border-radius:50%;background:rgba(233,178,102,.25);transition:background .25s}
+.guide-tip .gt-dots i.on{background:var(--amber);box-shadow:0 0 6px rgba(233,178,102,.6)}
+.guide-tip .gt-btn{
+  padding:10px 22px;background:linear-gradient(180deg,#f0be74,#cf8433);color:#241a0c;
+  font-size:12px;font-weight:900;letter-spacing:.26em;border-radius:7px;text-indent:.26em;
+  transition:filter .2s,transform .12s;
+}
+.guide-tip .gt-btn:hover{filter:brightness(1.06)}
+.guide-tip .gt-btn:active{transform:translateY(1px)}
+.guide-tip .gt-skip{font-size:10px;color:var(--faint2);letter-spacing:.18em}
+@keyframes tippop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes maskin{from{opacity:0}to{opacity:1}}
+/* 引导进行中：底部导航栏抬到聚光层之上，保持清晰可见、可点 */
+.app.guiding .tabbar{z-index:74}
+
+/* 引导箭头 */
+.guide-arrow{
+  position:absolute;z-index:73;pointer-events:none;
+  font-size:11px;letter-spacing:.3em;color:var(--amber);
+  background:var(--ink2);border:1px solid var(--line-strong);
+  border-radius:6px;padding:4px 10px;animation:arrbounce 1.6s ease-in-out infinite;
+}
+@keyframes arrbounce{
+  0%,100%{opacity:.7}
+  50%{opacity:1}
+}
+
+/* ============ 欢迎屏 ============ */
+.welcome-hero{text-align:center;padding:24px 0 8px}
+.welcome-hero .wh-mark{font-size:11px;letter-spacing:.7em;text-indent:.7em;color:var(--faint2)}
+.welcome-hero h1{font-size:46px;font-weight:900;letter-spacing:.22em;margin:16px 0 4px;text-indent:.22em}
+.welcome-hero .wh-en{font-family:var(--font-en);font-size:17px;letter-spacing:.6em;color:var(--amber);font-style:italic}
+.welcome-flame{margin:8px auto 0;height:130px;display:flex;justify-content:center;align-items:flex-end}
+.welcome-flame svg{width:80px;height:120px;transform-origin:50% 92%;filter:drop-shadow(0 0 22px rgba(245,165,74,.35))}
+.welcome-quote{font-size:12.5px;color:var(--muted);line-height:2.4;letter-spacing:.12em;text-align:center;margin:8px 18px 20px}
+.welcome-rule{padding:6px 8px 0;margin-bottom:8px}
+.welcome-rule .rule{
+  font-size:13px;line-height:2.1;color:#d6c7ab;letter-spacing:.04em;text-align:left;
+  padding:8px 0 8px 32px;position:relative;border-top:1px solid var(--line);
+}
+.welcome-rule .rule:last-child{border-bottom:1px solid var(--line)}
+.welcome-rule .rule::before{
+  content:'';position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  width:14px;height:14px;border-radius:50%;background:var(--seal);
+  display:grid;place-items:center;color:#f3e4c2;font-size:9px;font-weight:700;
+}
+.welcome-rule .rule:nth-child(1)::before{content:'一'}
+.welcome-rule .rule:nth-child(2)::before{content:'二';background:var(--jade)}
+.welcome-rule .rule:nth-child(3)::before{content:'三';background:var(--amber)}
+.welcome-rule .rule:nth-child(4)::before{content:'四'}
+.welcome-rule .rule b{color:var(--amber);font-weight:700}
+.welcome-cta{
+  width:100%;margin-top:24px;padding:16px 0;border-radius:9px;
+  background:linear-gradient(180deg,#f0be74,#cf8433);color:#241a0c;
+  font-size:15px;font-weight:900;letter-spacing:.4em;text-indent:.4em;
+  box-shadow:0 10px 36px rgba(209,138,54,.28);transition:filter .2s,transform .12s;
+}
+.welcome-cta:hover{filter:brightness(1.06)}
+.welcome-cta:active{transform:translateY(1px)}
+.welcome-skip{font-size:11px;color:var(--faint2);letter-spacing:.22em;display:block;text-align:center;margin:18px auto 0;padding:6px 12px;border-bottom:1px dashed var(--faint2);width:fit-content;transition:color .2s}
+.welcome-skip:hover{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="shell-wrap">
+  <div class="app" id="app">
+
+    <!-- ═══════ 欢迎（引导首屏） ═══════ -->
+    <section class="screen active" id="scr-welcome">
+      <div class="screen-inner">
+        <div class="welcome-hero">
+          <div class="wh-mark">一 款 不 是 打 卡 的 应 用</div>
+          <h1>心火</h1>
+          <div class="wh-en">E M B E R</div>
+          <div class="welcome-flame">
+            <svg viewBox="0 0 200 240">
+              <defs>
+                <linearGradient id="wO" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5a54a"/><stop offset="100%" stop-color="#b0431f" stop-opacity=".85"/></linearGradient>
+                <linearGradient id="wM" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffd98e"/><stop offset="100%" stop-color="#e8862f"/></linearGradient>
+              </defs>
+              <path d="M100 14 C 132 66, 152 100, 152 142 C152 188, 128 216, 100 219 C72 216, 48 188, 48 142 C48 100, 68 66, 100 14 Z" fill="url(#wO)" opacity=".9"/>
+              <path d="M100 66 C 119 103, 133 122, 133 150 C133 182, 118 200, 100 202 C82 200, 67 182, 67 150 C67 122, 81 103, 100 66 Z" fill="url(#wM)"/>
+            </svg>
+          </div>
+        </div>
+        <p class="welcome-quote">内驱力不需要被兑换，<br>它只需要被看见。</p>
+        <div class="welcome-rule">
+          <div class="rule"><b>掷骰问命</b>——骰子决定签的类别（成长/修行/天命），命运随机抽内容。最多手里三签。</div>
+          <div class="rule"><b>自己烧签</b>——签是命运给你的，但烧不烧全凭自己。完成一张，火就大一点；不想做就释放，无惩罚。</div>
+          <div class="rule"><b>入夜换日</b>——每天点「入夜」进入下一天。完成至少一签，火才不会熄。</div>
+          <div class="rule"><b>二十一日</b>——满二十一日，会收到一封根据你真实行为写下的「月签」，并重铸下一循环的签池。</div>
+        </div>
+        <button class="welcome-cta" id="welcome-go">点 火 · 开 始</button>
+        <a class="welcome-skip" id="welcome-skip">我已是老主顾，跳过</a>
+      </div>
+    </section>
+
+    <!-- ═══════ 开场 ═══════ -->
+    <section class="screen" id="scr-onboard">
+      <div class="screen-inner">
+        <div class="onboard-hero">
+          <div class="oh-mark">掷 骰 · 问 命 · 养 火</div>
+          <h1>心火</h1>
+          <div class="oh-en">E M B E R</div>
+          <div class="oh-line"></div>
+          <p class="oh-creed">这不是打卡工具。<br>没有积分，没有商城，没有排行榜。<br>命运之骰替你抽签，你只管烧。</p>
+        </div>
+        <div class="ob-label">留 名</div>
+        <input class="ob-name" id="ob-name" maxlength="8" placeholder="你希望被如何称呼">
+        <div class="ob-label">让 火 往 哪 烧</div>
+        <div class="intn-grid" id="ob-intns"></div>
+        <button class="btn-ignite" id="ob-go">点 火</button>
+        <p class="ob-foot">接下来是二十一日为一循环<br>月末，会有一封写给你的信</p>
+      </div>
+    </section>
+
+    <!-- ═══════ 祭坛（首页） ═══════ -->
+    <section class="screen" id="scr-altar">
+      <header class="topbar">
+        <div class="who"><span class="name" id="alt-name">—</span><span class="title-seal" id="alt-title-seal" title="当前称号">火</span></div>
+        <div class="cycle">第 <b id="alt-cycle">1</b> 循环<br><span id="alt-day">第 1 日</span></div>
+      </header>
+      <div class="screen-inner">
+        <div class="altar-stage">
+          <svg class="ring-svg" id="ring-svg" viewBox="0 0 252 252"></svg>
+          <div class="flame-wrap">
+            <div style="position:relative;width:120px;height:150px">
+              <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+              <svg class="flame-svg" viewBox="0 0 200 240">
+                <defs>
+                  <linearGradient id="gO" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f5a54a"/><stop offset="100%" stop-color="#b0431f" stop-opacity=".85"/>
+                  </linearGradient>
+                  <linearGradient id="gM" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#ffd98e"/><stop offset="100%" stop-color="#e8862f"/>
+                  </linearGradient>
+                </defs>
+                <g class="fl-g">
+                  <path d="M100 14 C 132 66, 152 100, 152 142 C152 188, 128 216, 100 219 C72 216, 48 188, 48 142 C48 100, 68 66, 100 14 Z" fill="url(#gO)" opacity=".9"/>
+                </g>
+                <g class="fl-g2">
+                  <path d="M100 66 C 119 103, 133 122, 133 150 C133 182, 118 200, 100 202 C82 200, 67 182, 67 150 C67 122, 81 103, 100 66 Z" fill="url(#gM)"/>
+                  <path d="M100 118 C 108 139, 115 150, 115 168 C115 186, 108 196, 100 197 C92 196, 85 186, 85 168 C85 150, 92 139, 100 118 Z" fill="#fff3d6"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="altar-caption"><div class="cn" id="alt-flame-word">火 种 初 芽</div></div>
+        <div class="stat-row">
+          <div class="stat"><b id="st-streak">0</b><span>连燃</span></div>
+          <div class="stat"><b id="st-done">0</b><span>成签</span></div>
+          <div class="stat"><b id="st-embers">0</b><span>印记</span></div>
+        </div>
+
+        <div class="sec-head"><h2>今 日 命 签</h2><span class="sub" id="alt-slot-word">0 / 3</span></div>
+        <div class="task-list" id="task-list"></div>
+
+        <div class="big-actions">
+          <button class="btn-night" id="btn-night">入 夜<small>完成至少一签，火便不熄</small></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ 命运之骰 ═══════ -->
+    <section class="screen" id="scr-dice">
+      <header class="topbar">
+        <div class="who"><span class="name">命运之骰</span></div>
+        <div class="cycle">手 中 之 签 <b id="dice-slots">0</b> / 3</div>
+      </header>
+      <div class="screen-inner">
+        <div class="dice-hero">
+          <div class="dice-stage">
+            <div class="dice" id="dice">
+              <div class="face f1">一<small>成长</small></div>
+              <div class="face f2">二<small>成长</small></div>
+              <div class="face f3">三<small>修行</small></div>
+              <div class="face f4">四<small>修行</small></div>
+              <div class="face f5">五<small>天命</small></div>
+              <div class="face f6">六<small>天命</small></div>
+            </div>
+          </div>
+          <div class="dice-shadow" id="dice-shadow"></div>
+          <button class="btn-roll" id="btn-roll">掷</button>
+          <div class="dice-legend">
+            <span class="lg-g"><b>一二</b> · 成长签</span>
+            <span class="lg-h"><b>三四</b> · 修行签</span>
+            <span class="lg-f"><b>五六</b> · 天命签</span>
+          </div>
+          <p class="dice-note">骰子决定签的<b>类别</b>，签的内容由命运随机。<br>签由你自己接、自己烧、自己了结——<br>这里没有人监督你，火知道就够了。</p>
+
+          <div class="reveal-zone" id="reveal-zone" style="width:100%">
+            <div class="card3d" id="card3d">
+              <div class="cface cfront">
+                <div><div class="sigil">签</div><div class="hint">命 运 已 应</div></div>
+              </div>
+              <div class="cface cback" id="card-back"></div>
+            </div>
+            <div class="reveal-actions" id="reveal-actions">
+              <button class="btn-accept" id="btn-accept">接 下 此 签</button>
+              <button class="btn-reroll" id="btn-reroll">再掷一次</button>
+              <button class="btn-custom" id="btn-custom">不 满 意 · 自 拟</button>
+              <button class="btn-decline" id="btn-decline">不要了</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ 月签报告 ═══════ -->
+    <section class="screen" id="scr-report">
+      <div class="screen-inner" id="report-inner"></div>
+    </section>
+
+    <!-- ═══════ 藏 ═══════ -->
+    <section class="screen" id="scr-vault">
+      <header class="topbar">
+        <div class="who"><span class="name">藏</span></div>
+        <div class="cycle" id="vault-count">印记 0 · 称号 0</div>
+      </header>
+      <div class="screen-inner">
+        <div class="sec-head"><h2>印 记</h2><span class="sub">每一张烧尽的签，都留下一枚印</span></div>
+        <div class="imp-grid" id="imp-grid"></div>
+        <div class="sec-head" style="margin-top:34px"><h2>称 号</h2><span class="sub">火的不同形状</span></div>
+        <div class="ttl-list" id="ttl-list"></div>
+      </div>
+    </section>
+
+    <!-- ═══════ 设 ═══════ -->
+    <section class="screen" id="scr-set">
+      <header class="topbar">
+        <div class="who"><span class="name">设</span></div>
+        <div class="cycle">心 火 · EMBER</div>
+      </header>
+      <div class="screen-inner">
+        <div class="set-block">
+          <h3>此 火 之 理</h3>
+          <p>心火不奖励任何可以花钱买到的东西。它的奖赏只有三样：一天天变大的火焰、一枚枚积攒的印记、以及每个循环结束后，那封根据你的真实行为写下的信。</p>
+          <p>内驱力不需要被兑换，它只需要被看见。</p>
+        </div>
+        <div class="set-block">
+          <h3>引 导</h3>
+          <p>走一遍完整的玩法演示，每一步都有说明。</p>
+          <button class="sand-btn" id="btn-retutor" style="margin-top:4px;max-width:200px;text-align:center">重 看 引 导</button>
+        </div>
+        <div class="set-block">
+          <h3>时 间 之 沙</h3>
+          <p>原型演示用：跳过等待，直接看火焰与月签如何生成。</p>
+          <div class="sand-row">
+            <button class="sand-btn" id="ff1">快进一日</button>
+            <button class="sand-btn" id="ff7">快进七日</button>
+            <button class="sand-btn" id="ff21">快进至月签</button>
+          </div>
+        </div>
+        <div class="set-block">
+          <h3>归 零</h3>
+          <p>熄灭火种，抹去一切印记与称号，从头再来。</p>
+          <button class="danger-link" id="btn-reset">熄 火 重 燃</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底部导航 -->
+    <nav class="tabbar" id="tabbar" style="display:none">
+      <button class="tab on" data-scr="scr-altar"><span class="t-g">炉</span><span class="t-l">祭坛</span></button>
+      <button class="tab" data-scr="scr-dice"><span class="t-g">骰</span><span class="t-l">问命</span></button>
+      <button class="tab" data-scr="scr-vault"><span class="t-g">藏</span><span class="t-l">图鉴</span><span class="badge" id="vault-badge"></span></button>
+      <button class="tab" data-scr="scr-set"><span class="t-g">设</span><span class="t-l">炉边</span></button>
+    </nav>
+
+    <!-- 浮层 -->
+    <div class="toast" id="toast"><div class="t-main" id="toast-main"></div><div class="t-sub" id="toast-sub"></div></div>
+    <div class="nightveil" id="nightveil"><div class="nv-t">入 夜</div></div>
+    <div class="modal" id="modal">
+      <div class="modal-box">
+        <div class="m-k">称 号 已 授</div>
+        <div class="m-seal" id="m-seal">燃</div>
+        <div class="m-n" id="m-n"></div>
+        <div class="m-d" id="m-d"></div>
+        <button class="btn-accept" id="m-ok">谢 领</button>
+      </div>
+    </div>
+
+    <!-- 自拟签弹层 -->
+    <div class="modal" id="modal-custom">
+      <div class="modal-box" style="position:relative">
+        <button class="x-btn" id="custom-cancel">×</button>
+        <div class="m-k">自 拟 此 签</div>
+        <div style="font-size:11.5px;color:var(--muted);line-height:1.9;margin-top:10px;letter-spacing:.05em">命运给了框架，内容由你。</div>
+        <input class="custom-input" id="custom-n" maxlength="20" placeholder="你要给自己下什么签">
+        <div class="custom-lbl">类 别</div>
+        <div class="custom-cat" id="custom-cat">
+          <button data-c="grow" class="on">成 长</button>
+          <button data-c="habit">修 行</button>
+          <button data-c="fate">天 命</button>
+        </div>
+        <div class="custom-lbl">一 句 描 述（ 可 选 ）</div>
+        <textarea class="custom-textarea" id="custom-d" maxlength="60" placeholder="越具体越好，火会认得它"></textarea>
+        <button class="btn-accept" id="custom-ok" style="margin-top:24px;width:100%;padding:12px 0;font-size:13px">落 此 一 签</button>
+      </div>
+    </div>
+
+    <!-- ═══════ 引导浮层 ═══════ -->
+    <div class="guide-mask" id="guide-mask" style="display:none"></div>
+    <div class="guide-spot" id="guide-spot" style="display:none"></div>
+    <div class="guide-tip" id="guide-tip" style="display:none">
+      <div class="gt-step" id="gt-step"></div>
+      <div class="gt-t" id="gt-t"></div>
+      <div class="gt-foot">
+        <span class="gt-skip" id="gt-skip">跳过引导</span>
+        <div style="display:flex;gap:14px;align-items:center">
+          <div class="gt-dots" id="gt-dots"></div>
+          <button class="gt-btn" id="gt-btn">知 道 了</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="shell-caption">心 火 · EMBER — 原 型</div>
+</div>
+
+<script>
+'use strict';
+/* ══════════════════════ 数据 ══════════════════════ */
+const CATS = {
+  grow:{name:'成长签', seal:'学', word:'以输入喂养自己'},
+  habit:{name:'修行签', seal:'行', word:'身体是火种的炉膛'},
+  fate:{name:'天命签', seal:'命', word:'走出边界的时刻'}
+};
+const INTNS = [
+  {id:'cert',  n:'考证进修', d:'一场漫长的登阶'},
+  {id:'read',  n:'阅读积累', d:'在别人的思想里点灯'},
+  {id:'health',n:'身心习惯', d:'把炉膛收拾干净'},
+  {id:'skill', n:'技能探索', d:'多一门手艺，多一束光'}
+];
+const POOL = [
+  // 成长签
+  {cat:'grow', it:['read'],      n:'读二十页书',         d:'纸质书、电子书都行，二十页，不多不少。', why:'不必读完整本，火是按页烧的'},
+  {cat:'grow', it:['cert'],      n:'精读一章教材',       d:'挑考证教材里你最怵的那一章，正面攻下它。', why:'最怵的地方，往往就是门槛所在'},
+  {cat:'grow', it:['cert'],      n:'做十道真题并订正',   d:'做完不算完，把错的原因写在那道题旁边。', why:'错题是火没烧到的地方'},
+  {cat:'grow', it:['cert','read'],n:'背三十个词',        d:'考试词汇、专业术语、或者一门外语，都算。', why:'词语是思想的手柄'},
+  {cat:'grow', it:['cert','skill'],n:'看一节公开课',     d:'三十分钟即可，但要留下三条笔记。', why:'听过不等于烧过，笔记是灰烬的形状'},
+  {cat:'grow', it:['skill'],     n:'读一篇行业深度文',   d:'找你所在行业最硬的一篇长文，读完写一句感想。', why:'一句真话，胜过十次点头'},
+  {cat:'grow', it:['read','skill'],n:'整理所学三则',     d:'把最近学到的东西浓缩成三条，写下来。', why:'能浓缩的，才是真正烧透了'},
+  {cat:'grow', it:['read'],      n:'抄一首诗',           d:'手抄。笔尖慢下来的时候，心也慢下来。', why:'有些火不是为了照亮，是为了安静'},
+  {cat:'grow', it:['cert'],      n:'复盘错题一刻钟',     d:'只看错题，只花十五分钟。', why:'灰烬里捡出的柴，最耐烧'},
+  {cat:'grow', it:['skill'],     n:'练一页字',           d:'字帖、硬笔、随便什么，认真写满一页。', why:'手稳的人，心也稳'},
+  // 修行签
+  {cat:'habit', it:['health'],   n:'二十三点半前入睡',   d:'把灯熄了。今天到此为止。', why:'睡眠是火种的窖藏'},
+  {cat:'habit', it:['health'],   n:'喝满八杯水',         d:'不用精确计量，记得喝就算。', why:'炉膛需要水汽，人也是'},
+  {cat:'habit', it:['health'],   n:'冥想十分钟',         d:'坐下来，只呼吸，走神了就拉回来。', why:'火苗在静止时最亮'},
+  {cat:'habit', it:['health'],   n:'步行六千步',         d:'走去一个不常去的地方，再走回来。', why:'路会把心里的淤积走散'},
+  {cat:'habit', it:['health'],   n:'睡前离机半小时',     d:'把手机放到伸手够不着的地方，半小时。', why:'火的敌人不是风，是闪烁的屏幕'},
+  {cat:'habit', it:['health'],   n:'为自己做一顿饭',     d:'从洗菜开始，做完认真吃完。', why:'喂养自己，是最古老的仪式'},
+  {cat:'habit', it:['health'],   n:'午后散步不看手机',   d:'十五分钟，手空着，眼睛留给路。', why:'留白处，火才有喘息'},
+  {cat:'habit', it:['health'],   n:'对镜子说一句肯定',   d:'看着自己的眼睛，说一句真心的。', why:'火也需要听见自己的声音'},
+  {cat:'habit', it:['health'],   n:'端正坐姿一小时',     d:'一小时内，每小时起身活动两分钟。', why:'挺直的脊梁是烟囱，让火更旺'},
+  // 天命签
+  {cat:'fate', it:[],            n:'联系一位故人',       d:'那个很久没说话、但一直惦记的人，发条消息。', why:'火种会认得彼此'},
+  {cat:'fate', it:[],            n:'写下三件感谢的小事', d:'越具体越好。写完读一遍。', why:'感恩是往炉里添的软柴'},
+  {cat:'fate', it:[],            n:'拒绝一件不想做的事', d:'那件你一直拖着、其实心里已经说了不的事。', why:'挡风的墙，有时是自己竖的'},
+  {cat:'fate', it:[],            n:'尝试一件没做过的事', d:'新的路口、新的菜、新的路线、新的曲子。', why:'火苗遇到新柴，会突然蹿高'},
+  {cat:'fate', it:[],            n:'彻底收拾一个角落',   d:'书桌、抽屉、手机相册，选一个，清干净。', why:'炉膛干净，火才烧得稳'},
+  {cat:'fate', it:[],            n:'给一年后的自己写信', d:'几句话就够。写下此刻的火况。', why:'让未来的你，来验收这炉火'}
+];
+const LINES_DONE = [
+  '火光跳了一下——那是它在回应你。',
+  '今天的你，比昨天亮了一点。',
+  '一签既成。心火不语，但记住了。',
+  '你看，坚持这件事，正在变成本能。',
+  '又一块柴落进炉膛，噼啪一声，很轻，很真。',
+  '不必声张。火在暗处，也在长。',
+  '此刻的安静努力，是未来的你在借光。',
+  '签已焚，愿已成。',
+  '火不问结果，只管烧。你也一样。'
+];
+const LINES_NIGHT = [
+  '夜幕落下。今日之火，已记入炉中。',
+  '入夜。未竟之事交给梦，已成之事交给火。',
+  '炉门合上。明天，再添新柴。'
+];
+const LINES_RELEASE = [
+  '此签随风散去，不留罪过。',
+  '火不怪你。签，换一张就是。',
+  '放下也是一种秩序。'
+];
+const TITLES = [
+  {id:'spark',   n:'点火者',   ch:'点', d:'完成第一签。火种已燃。',             cond:s=>tDone(s)>=1},
+  {id:'streak3', n:'初燃',     ch:'燃', d:'连燃三日，火苗初成气候。',           cond:s=>s.cycleStats.streak>=3},
+  {id:'keeper',  n:'拾柴人',   ch:'柴', d:'累计成签十次。',                     cond:s=>tDone(s)>=10},
+  {id:'triple',  n:'日行三签', ch:'叁', d:'一日之内，三签俱成。',               cond:s=>s.cycleStats.doneToday>=3},
+  {id:'fateone', n:'听天由我', ch:'命', d:'完成一张天命签。',                   cond:s=>s.imprints.some(i=>i.cat==='fate')},
+  {id:'torch',   n:'执炬者',   ch:'炬', d:'连燃七日，可执火而行。',             cond:s=>s.cycleStats.streak>=7},
+  {id:'eternal', n:'长明',     ch:'明', d:'连燃二十一日，此火长明。',           cond:s=>s.cycleStats.streak>=21},
+  {id:'prairie', n:'燎原',     ch:'原', d:'走完一个完整循环。',                 cond:s=>s.cyclesCompleted>=1}
+];
+const FLAME_WORDS = [
+  {n:0, w:'火 种 初 芽'},{n:3,w:'微 光 将 明'},{n:7,w:'一 炉 暖 意'},
+  {n:12,w:'焰 起 有 声'},{n:18,w:'满 堂 皆 赤'},{n:26,w:'此 火 可 燎 原'}
+];
+
+/* ══════════════════════ 状态 ══════════════════════ */
+const KEY='ember_state_v1';
+let S=null;
+function freshState(){return{
+  v:1, onboarded:false, name:'', intentions:['read','health'],
+  cycle:1, day:1, tasks:[], rerolledToday:false,
+  cycleStats:{done:0,rolled:0,byCat:{grow:0,habit:0,fate:0},streak:0,maxStreak:0,doneToday:0,daysLit:[]},
+  history:[], imprints:[], titles:[], cyclesCompleted:0, pendingReport:null,
+  customPool:[],
+  tutorialDone:false, tutorialStep:0, tutVer:4
+};}
+function load(){try{const r=localStorage.getItem(KEY);if(r){S=JSON.parse(r);if(!S.cycleStats)S=null;}}catch(e){S=null}if(!S)S=freshState();
+  // 旧存档兼容：老用户（已点过火）默认不强制走引导
+  if(typeof S.tutorialDone!=='boolean')S.tutorialDone=!!S.onboarded;
+  if(typeof S.tutorialStep!=='number')S.tutorialStep=0;
+  if(!Array.isArray(S.customPool))S.customPool=[];
+  // 引导改版到 v4：去掉全部模糊滤镜 + 老用户也完整从第 1 步（留名）看起
+  if(S.tutVer!==4){S.tutVer=4;S.tutorialDone=false;S.tutorialStep=S.onboarded?1:0;save();}
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function tDone(s){return s.history.length}
+
+/* ══════════════════════ 工具 ══════════════════════ */
+const $=id=>document.getElementById(id);
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+// 签 id 必须全局唯一：时间戳+自增计数+随机，避免同一毫秒内连抽导致 id 碰撞
+let _uid=0;
+function uid(p){_uid++;return (p||'t')+Date.now().toString(36)+'-'+_uid.toString(36)+'-'+Math.floor(Math.random()*46656).toString(36);}
+let toastTimer=null;
+function toast(main,sub){
+  $('toast-main').innerHTML=main;$('toast-sub').textContent=sub||'';
+  const t=$('toast');t.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
+}
+function curTitle(){
+  const owned=TITLES.filter(t=>S.titles.includes(t.id));
+  return owned.length?owned[owned.length-1]:{n:'无名之火',ch:'火'};
+}
+function checkTitles(){
+  const news=TITLES.filter(t=>!S.titles.includes(t.id)&&t.cond(S));
+  news.forEach(t=>{S.titles.push(t.id);showTitleModal(t);});
+  save();
+}
+let modalQueue=[],modalBusy=false;
+function showTitleModal(t){
+  modalQueue.push(t);pumpModal();
+}
+function pumpModal(){
+  if(modalBusy||!modalQueue.length)return;
+  modalBusy=true;const t=modalQueue.shift();
+  $('m-seal').textContent=t.ch;$('m-n').textContent=t.n;$('m-d').textContent=t.d;
+  $('modal').classList.add('show');
+}
+$('m-ok').addEventListener('click',()=>{
+  $('modal').classList.remove('show');
+  setTimeout(()=>{modalBusy=false;pumpModal();renderAll();},320);
+});
+function flameScale(){
+  const base=0.55+Math.min(tDone(S)*0.022,0.45)+Math.min(S.cycleStats.streak*0.016,0.3);
+  return Math.min(base,1.32);
+}
+function flameWord(){
+  const n=tDone(S);let w=FLAME_WORDS[0].w;
+  FLAME_WORDS.forEach(f=>{if(n>=f.n)w=f.w});return w;
+}
+
+/* ══════════════════════ 21日环 ══════════════════════ */
+function renderRing(){
+  const svg=$('ring-svg');svg.innerHTML='';
+  const cx=126,cy=126,R=112,N=21;
+  const lit=S.cycleStats.daysLit.length;
+  const litSet=new Set(S.cycleStats.daysLit);
+  for(let i=0;i<N;i++){
+    const a=-Math.PI/2+i*(Math.PI*2/N);
+    const x1=cx+Math.cos(a)*(R-7),y1=cy+Math.sin(a)*(R-7);
+    const x2=cx+Math.cos(a)*R,y2=cy+Math.sin(a)*R;
+    const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',x1);l.setAttribute('y1',y1);l.setAttribute('x2',x2);l.setAttribute('y2',y2);
+    const isLit=litSet.has(i+1);
+    l.setAttribute('stroke',isLit?'#e9b266':'rgba(233,178,102,.18)');
+    l.setAttribute('stroke-width',isLit?'3.4':'2');
+    l.setAttribute('stroke-linecap','round');
+    if(isLit)l.setAttribute('style','filter:drop-shadow(0 0 4px rgba(233,178,102,.8))');
+    svg.appendChild(l);
+  }
+  const circ=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  circ.setAttribute('cx',cx);circ.setAttribute('cy',cy);circ.setAttribute('r',R+9);
+  circ.setAttribute('fill','none');circ.setAttribute('stroke','rgba(233,178,102,.08)');
+  circ.setAttribute('stroke-width','1');
+  svg.appendChild(circ);
+}
+
+/* ══════════════════════ 渲染 ══════════════════════ */
+function switchScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.scr===id));
+}
+function renderAltar(){
+  $('alt-name').textContent=S.name||'无名';
+  const ct=curTitle();
+  $('alt-title-seal').textContent=ct.ch;
+  $('alt-cycle').textContent=S.cycle;
+  $('alt-day').textContent='第 '+S.day+' 日';
+  document.documentElement.style.setProperty('--fscale',flameScale());
+  $('alt-flame-word').textContent=flameWord();
+  $('st-streak').textContent=S.cycleStats.streak;
+  $('st-done').textContent=S.cycleStats.done;
+  $('st-embers').textContent=S.imprints.length;
+  renderRing();
+  const list=$('task-list');list.innerHTML='';
+  $('alt-slot-word').textContent=S.tasks.length+' / 3';
+  if(S.pendingReport){
+    const nb=document.createElement('div');
+    nb.style.cssText='border:1px solid var(--line-strong);border-radius:10px;padding:16px;text-align:center;background:rgba(233,178,102,.06);margin-bottom:12px';
+    nb.innerHTML='<div style="font-size:12px;letter-spacing:.3em;color:var(--amber)">月 签 已 封 缄</div>'+
+      '<div style="font-size:11px;color:var(--faint2);margin:6px 0 10px;letter-spacing:.1em">这一循环的信写好了，在等你拆。</div>'+
+      '<button onclick="viewReport()" style="font-size:13px;color:var(--amber);letter-spacing:.24em;border-bottom:1px solid var(--amber);padding:2px 4px">拆 信 · 读 月 签</button>';
+    list.appendChild(nb);
+  }
+  if(!S.tasks.length&&!S.pendingReport){
+    list.innerHTML='<div class="slot-empty"><div class="z">虚 位 以 待</div><button onclick="goDice()">掷骰 · 问今日之命</button></div>';
+  }
+  S.tasks.forEach(t=>{
+    const el=document.createElement('div');
+    el.className='tcard';el.dataset.cat=t.cat;el.dataset.id=t.id;
+    const rare=t.cat==='fate'?'<span class="rare"> · 天命</span>':'';
+    const own=t.custom?'<span style="color:var(--amber);opacity:.75"> · 自拟</span>':'';
+    el.innerHTML=
+      '<div class="seal">'+CATS[t.cat].seal+'</div>'+
+      '<div class="t-meta">'+CATS[t.cat].name+rare+own+' · 第'+t.gotAt+'日来</div>'+
+      '<div class="t-name">'+t.n+'</div>'+
+      '<div class="t-desc">'+t.d+'</div>'+
+      '<div class="t-why">'+t.why+'</div>'+
+      '<div class="t-actions"><button class="btn-done" onclick="completeTask(\''+t.id+'\')">完 成 此 签</button>'+
+      '<button class="btn-release" onclick="releaseTask(\''+t.id+'\')">释放</button></div>';
+    list.appendChild(el);
+  });
+  if(S.tasks.length<3&&!S.pendingReport){
+    const slot=document.createElement('div');
+    slot.className='slot-empty';
+    slot.innerHTML='<div class="z">尚 有 空 位 · '+ (3-S.tasks.length) +'</div><button onclick="goDice()">再 掷 一 签</button>';
+    list.appendChild(slot);
+  }
+}
+function renderDice(){
+  $('dice-slots').textContent=S.tasks.length;
+  const full=S.tasks.length>=3;
+  $('btn-roll').disabled=full;
+  $('btn-roll').textContent=full?'签 位 已 满':'掷';
+  $('reveal-zone').classList.remove('show');
+}
+function renderVault(){
+  $('vault-count').textContent='印记 '+S.imprints.length+' · 称号 '+S.titles.length;
+  $('vault-badge').classList.toggle('show',!!S.pendingReport);
+  const grid=$('imp-grid');grid.innerHTML='';
+  if(!S.imprints.length){
+    grid.innerHTML='<div class="empty-note" style="grid-column:1/-1">炉中尚无印记<br>烧掉第一张签，它就会出现</div>';
+  }else{
+    S.imprints.slice().reverse().forEach(i=>{
+      const el=document.createElement('div');
+      el.className='imp';el.dataset.cat=i.cat;
+      el.innerHTML='<div class="i-seal">'+CATS[i.cat].seal+'</div><div class="i-n">'+i.n+'</div>';
+      grid.appendChild(el);
+    });
+  }
+  const tl=$('ttl-list');tl.innerHTML='';
+  TITLES.forEach(t=>{
+    const own=S.titles.includes(t.id);
+    const el=document.createElement('div');
+    el.className='ttl'+(own?'':' locked');
+    el.innerHTML='<span class="title-seal">'+(own?t.ch:'？')+'</span><div><div class="tt-n">'+t.n+'</div><div class="tt-d">'+t.d+'</div></div>';
+    tl.appendChild(el);
+  });
+}
+function renderAll(){renderAltar();renderDice();renderVault();}
+
+/* ══════════════════════ 掷骰 ══════════════════════ */
+let rolling=false,pendingTask=null;
+const FACE_ROT={1:[0,0],2:[90,0],3:[0,-90],4:[0,90],5:[-90,0],6:[0,180]};
+function goDice(){switchScreen('scr-dice');renderDice();}
+window.goDice=goDice;
+function viewReport(){switchScreen('scr-report');renderReport();}
+window.viewReport=viewReport;
+$('btn-roll').addEventListener('click',()=>{
+  if(rolling||S.tasks.length>=3)return;
+  rolling=true;
+  $('reveal-zone').classList.remove('show');
+  $('card3d').classList.remove('flipped');
+  $('btn-roll').disabled=true;$('btn-roll').textContent='掷';
+  const face=1+Math.floor(Math.random()*6);
+  const cat=face<=2?'grow':face<=4?'habit':'fate';
+  const [tx,ty]=FACE_ROT[face];
+  const spinX=360*(3+Math.floor(Math.random()*2));
+  const spinY=360*(3+Math.floor(Math.random()*2));
+  $('dice').style.transform='rotateX('+(spinX+tx)+'deg) rotateY('+(spinY+ty)+'deg)';
+  setTimeout(()=>{
+    pendingTask=drawTask(cat);
+    rolling=false;             // 先复位，避免任何异常导致掷骰键永久锁死
+    renderDice();              // 再刷新骰子状态（会清掉旧的揭签）
+    if(pendingTask)showReveal(pendingTask);   // 最后揭签——顺序不能反，否则卡片一出来就被藏掉
+  },2700);
+});
+function drawTask(cat){
+  const all=S.customPool.concat(POOL);
+  if(!all.length)return null;
+  let cands=all.filter(t=>t.cat===cat&&!S.tasks.some(x=>x.n===t.n));
+  if(!cands.length)cands=all.filter(t=>t.cat===cat);
+  if(!cands.length)cands=all.slice();          // 兜底：类别池被掏空也不返回空
+  const pref=cands.filter(t=>(t.it||[]).some(i=>S.intentions.includes(i)));
+  return rnd(pref.length&&Math.random()<0.72?pref:cands)||cands[0]||null;
+}
+function showReveal(t){
+  $('card-back').innerHTML=
+    '<div class="cb-meta"><span>'+CATS[t.cat].name+'</span><span>'+CATS[t.cat].word+'</span></div>'+
+    '<div class="cb-name">'+t.n+'</div>'+
+    '<div class="cb-desc">'+t.d+'</div>'+
+    '<div class="cb-why">「'+t.why+'」</div>';
+  $('reveal-zone').classList.add('show');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$('card3d').classList.add('flipped')));
+  $('btn-reroll').disabled=S.rerolledToday;
+  $('btn-reroll').textContent=S.rerolledToday?'再掷一次':'再掷一次（今日一次）';
+  $('reveal-zone').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+$('btn-accept').addEventListener('click',()=>{
+  if(!pendingTask||S.tasks.length>=3)return;
+  S.tasks.push({id:uid(),n:pendingTask.n,d:pendingTask.d,why:pendingTask.why,cat:pendingTask.cat,gotAt:S.day});
+  S.cycleStats.rolled++;pendingTask=null;save();
+  toast('签已入袖。','去 · 烧它');
+  renderAll();switchScreen('scr-altar');
+});
+$('btn-reroll').addEventListener('click',()=>{
+  if(S.rerolledToday||rolling)return;
+  S.rerolledToday=true;save();
+  $('reveal-zone').classList.remove('show');
+  setTimeout(()=>$('btn-roll').click(),350);
+});
+$('btn-decline').addEventListener('click',()=>{
+  pendingTask=null;$('reveal-zone').classList.remove('show');
+  toast('命运不恼，只是换了一张签。');
+});
+
+/* 自拟签 */
+$('btn-custom').addEventListener('click',()=>{
+  if(!pendingTask)return;
+  const t=pendingTask;
+  $('custom-n').value=t.n;
+  $('custom-d').value=t.d!=='undefined'?t.d:'';
+  $('custom-cat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.c===t.cat));
+  $('modal-custom').classList.add('show');
+  setTimeout(()=>{$('custom-n').focus();$('custom-n').select();},220);
+});
+$('custom-cat').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-c]');if(!b)return;
+  $('custom-cat').querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+});
+$('custom-cancel').addEventListener('click',()=>$('modal-custom').classList.remove('show'));
+$('custom-ok').addEventListener('click',()=>{
+  const n=$('custom-n').value.trim();
+  if(!n){toast('留个名字，签要认得自己。');return;}
+  if(S.tasks.length>=3){toast('签位已满，先释放一张。');$('modal-custom').classList.remove('show');return;}
+  const cat=$('custom-cat').querySelector('button.on').dataset.c;
+  const d=$('custom-d').value.trim()||'自拟之签，命运未写。';
+  const id=uid();
+  S.tasks.push({id,n,d,why:'你亲手写的签，火会记得特别清楚。',cat,custom:true,gotAt:S.day});
+  if(!S.customPool.find(x=>x.cat===cat&&x.n===n)){
+    S.customPool.push({cat,n,d,why:'你亲手写的签，火会记得特别清楚。',it:S.intentions.length?S.intentions.slice():['read']});
+  }
+  pendingTask=null;S.cycleStats.rolled++;save();
+  $('modal-custom').classList.remove('show');
+  $('reveal-zone').classList.remove('show');
+  toast('自拟签入袖。','因你而起，火会更认得');
+  renderAll();switchScreen('scr-altar');
+});
+
+/* ══════════════════════ 完成 / 释放 ══════════════════════ */
+function completeTask(id){
+  const t=S.tasks.find(x=>x.id===id);if(!t)return;
+  const el=document.querySelector('.tcard[data-id="'+id+'"]');
+  const fin=()=>{
+    S.tasks=S.tasks.filter(x=>x.id!==id);
+    S.cycleStats.done++;S.cycleStats.doneToday++;
+    S.cycleStats.byCat[t.cat]++;
+    if(!S.cycleStats.daysLit.includes(S.day))S.cycleStats.daysLit.push(S.day);
+    S.history.push({cycle:S.cycle,day:S.day,cat:t.cat,n:t.n});
+    S.imprints.push({n:t.n,cat:t.cat});
+    checkTitles();save();
+    renderAll();
+    toast(rnd(LINES_DONE),t.n);
+  };
+  if(el){el.classList.add('burning');setTimeout(fin,650);}
+  else fin();
+}
+window.completeTask=completeTask;
+function releaseTask(id){
+  S.tasks=S.tasks.filter(x=>x.id!==id);save();
+  renderAll();toast(rnd(LINES_RELEASE));
+}
+window.releaseTask=releaseTask;
+
+/* ══════════════════════ 入夜 ══════════════════════ */
+$('btn-night').addEventListener('click',()=>{
+  const veil=$('nightveil');veil.classList.add('on');
+  setTimeout(()=>{endDay();veil.classList.remove('on');},1500);
+});
+function endDay(quiet){
+  const cs=S.cycleStats;
+  if(cs.doneToday>0){cs.streak++;cs.maxStreak=Math.max(cs.maxStreak,cs.streak);}
+  else cs.streak=0;
+  cs.doneToday=0;S.rerolledToday=false;
+  // 久置之签化灰
+  const stale=S.tasks.filter(t=>S.day-t.gotAt>=2);
+  if(stale.length)S.tasks=S.tasks.filter(t=>S.day-t.gotAt<2);
+  S.day++;
+  if(S.day>21){
+    S.cyclesCompleted++;
+    checkTitles();
+    S.pendingReport=generateReport();
+    save();renderAll();
+    switchScreen('scr-report');renderReport();
+    if(!quiet)toast('二十一日已满。你的信，写好了。','月签 · 已生成');
+    return;
+  }
+  save();renderAll();
+  if(!quiet)toast(stale.length?'入夜。久置之签已化灰，明日再掷。':rnd(LINES_NIGHT),'第 '+S.day+' 日');
+}
+
+/* ══════════════════════ 月签报告 ══════════════════════ */
+function generateReport(){
+  const cs=S.cycleStats;
+  const rate=cs.rolled?Math.round(cs.done/cs.rolled*100):0;
+  const by=cs.byCat;
+  const domCat=Object.keys(by).reduce((a,b)=>by[a]>=by[b]?a:b,'grow');
+  const parts=[];
+  let head;
+  if(rate>=80){head='火已成势';
+    parts.push('这一循环，你几乎接住了命运递来的每一签。<em>'+cs.done+'</em>次成签，完成率<em>'+rate+'%</em>。这不是运气的形状，是意志的形状。');}
+  else if(rate>=50){head='风中之火';
+    parts.push('火焰摇曳过，但始终没有熄。完成率<em>'+rate+'%</em>——完成一半以上的签，本身就是一种钝拙的坚定。');}
+  else if(cs.done>0){head='灰下余温';
+    parts.push('成签不多，完成率<em>'+rate+'%</em>。但灰烬之下仍有温度，而火，从来都是从余温里重新烧起来的。');}
+  else{head='未燃之火';
+    parts.push('这一循环，炉膛基本冷着。没有成签。但请注意：你没有卸载这里。这本身，就是还没放弃的证据。');}
+  // 偏好
+  if(cs.done>0){
+    if(domCat==='grow')parts.push('你与书本、课程、题目相处的时间最多——你是一个用<em>输入</em>喂养自己的人。');
+    else if(domCat==='habit')parts.push('你把大部分力气花在了身体与秩序上。炉膛干净，火才烧得稳——你懂这个道理，而且做到了。');
+    else parts.push('你居然最常完成<em>天命签</em>。你喜欢的或许不是任务本身，而是那个被命运推着走出边界的自己。');
+  }
+  // 节奏
+  if(cs.maxStreak>=7)parts.push('最长连燃<em>'+cs.maxStreak+'日</em>。你已经摸到了节奏的门——习惯不是靠激情，是靠重复的火候。');
+  else if(cs.maxStreak>=3)parts.push('最长连燃<em>'+cs.maxStreak+'日</em>。节奏出现过，只是没能留住。它还会再来的。');
+  else if(cs.done>0)parts.push('连燃从未超过两日。火焰是断续的——不缺火种，缺的是<em>每日落点</em>。');
+  // 建议
+  const sugs=[];
+  if(rate<50&&cs.rolled>=4)sugs.push('下个循环，少掷一点。一天一签，把它烧透，比三签齐发更有用。');
+  if(by.habit>by.grow*2)sugs.push('你擅长照顾身体，却很少喂饱头脑。下循环，让成长签多进些签池（意向里勾选「考证进修」或「阅读积累」）。');
+  if(by.grow>by.habit*2)sugs.push('你在拼命输入，但身体的炉膛快没柴了。下循环，给自己多留几张修行签。');
+  if(cs.maxStreak<3&&cs.done>0)sugs.push('把签绑在固定的时间点——同一炉火，要每天同一时刻添柴，火才认得路。');
+  if(rate>=80)sugs.push('你已证明自己接得住。下一循环，签池可以更狠：更长的书、更难的题、更早的清晨。');
+  if(by.fate===0)sugs.push('这一循环你没有接住天命签——或者说，还没敢接。那些看起来「没用」的事，往往是火最需要的氧气。');
+  if(!sugs.length)sugs.push('保持现状。你与火的关系已经是良性的，别让任何方法论打扰它。');
+  return {cycle:S.cycle,done:cs.done,rolled:cs.rolled,rate,streak:cs.maxStreak,by:{...by},head,evals:parts,sugs,
+          newTitle:TITLES.find(t=>t.id==='prairie')};
+}
+function renderReport(){
+  const r=S.pendingReport;if(!r)return;
+  const total=Math.max(r.done,1);
+  const maxC=Math.max(r.by.grow,r.by.habit,r.by.fate,1);
+  $('report-inner').innerHTML=
+  '<div class="report-hero">'+
+    '<div class="rh-kicker">月 签 · 已 封 缄</div>'+
+    '<h1>'+r.head+'</h1>'+
+    '<div class="rh-sub">第 '+r.cycle+' 循环 · 二十一日 · 一封写给你的信</div>'+
+  '</div>'+
+  '<div class="rpt-stats">'+
+    '<div class="cell"><b>'+r.done+'</b><span>成签</span></div>'+
+    '<div class="cell"><b>'+r.rate+'%</b><span>完成率</span></div>'+
+    '<div class="cell"><b>'+r.streak+'</b><span>最长连燃</span></div>'+
+    '<div class="cell"><b>'+r.rolled+'</b><span>出签</span></div>'+
+  '</div>'+
+  '<div class="rpt-block"><h3>解 读</h3>'+r.evals.map(p=>'<p>'+p+'</p>').join('')+'</div>'+
+  '<div class="rpt-block"><h3>签 之 走 向</h3>'+
+    distRow('grow','成长',r.by.grow,maxC)+distRow('habit','修行',r.by.habit,maxC)+distRow('fate','天命',r.by.fate,maxC)+
+  '</div>'+
+  '<div class="rpt-block"><h3>炉 边 建 议</h3><ul class="sug-list">'+r.sugs.map(s=>'<li>'+s+'</li>').join('')+'</ul></div>'+
+  '<div class="rpt-block"><h3>授 勋</h3>'+
+    '<div class="award-box"><div class="big-seal">原</div><div><div class="ab-t">循 环 勋 章</div><div class="ab-n">燎原</div><div class="ab-d">走完一个完整循环的人，才配谈习惯。</div></div></div>'+
+  '</div>'+
+  '<div class="rpt-block"><h3>下 一 循 环 · 火 往 哪 烧</h3>'+
+    '<p style="margin-bottom:14px">意向会重铸签池。命运仍会随机，但会偏向你想去的方向。</p>'+
+    '<div class="intn-grid" id="rp-intns"></div>'+
+    '<div id="rp-plan"></div>'+
+    '<button class="btn-next-cycle" id="btn-next">开 启 第 '+(S.cycle+1)+' 循 环</button>'+
+  '</div>';
+  const grid=$('rp-intns');
+  INTNS.forEach(i=>{
+    const b=document.createElement('button');
+    b.className='intn'+(S.intentions.includes(i.id)?' on':'');
+    b.innerHTML='<div class="i-dot"></div><div class="i-n">'+i.n+'</div><div class="i-d">'+i.d+'</div>';
+    b.addEventListener('click',()=>{b.classList.toggle('on');updatePlan();});
+    b.dataset.i=i.id;
+    grid.appendChild(b);
+  });
+  $('btn-next').addEventListener('click',startNextCycle);
+  updatePlan();
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.dist-bar i').forEach(el=>{el.style.width=el.dataset.w+'%';});
+  });
+}
+function distRow(c,label,v,max){
+  return '<div class="dist-row" data-c="'+c+'"><span class="dl">'+label+'</span><span class="dist-bar"><i data-w="'+Math.round(v/max*100)+'"></i></span><span class="dv">'+v+'</span></div>';
+}
+function chosenIntns(){
+  const g=$('rp-intns');if(!g)return S.intentions;
+  const on=[...g.querySelectorAll('.intn.on')].map(x=>x.dataset.i);
+  return on.length?on:S.intentions;
+}
+function updatePlan(){
+  const it=chosenIntns();
+  const names=INTNS.filter(i=>it.includes(i.id)).map(i=>i.n);
+  let cands=POOL.filter(t=>t.it.some(i=>it.includes(i.id)));
+  if(cands.length<3)cands=POOL.slice();
+  const picks=[];const pool=cands.slice();
+  while(picks.length<3&&pool.length){picks.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);}
+  $('rp-plan').innerHTML=
+    '<div class="sec-head" style="margin-top:26px"><h2>签 池 预 览</h2><span class="sub">偏向：'+names.join(' · ')+'</span></div>'+
+    '<div class="next-pool">'+picks.map(t=>
+      '<div class="tcard" data-cat="'+t.cat+'"><div class="seal">'+CATS[t.cat].seal+'</div>'+
+      '<div class="t-meta">'+CATS[t.cat].name+'</div><div class="t-name">'+t.n+'</div>'+
+      '<div class="t-desc">'+t.d+'</div></div>').join('')+'</div>';
+}
+function startNextCycle(){
+  S.intentions=chosenIntns();
+  S.cycle++;S.day=1;S.tasks=[];S.rerolledToday=false;
+  S.cycleStats={done:0,rolled:0,byCat:{grow:0,habit:0,fate:0},streak:0,maxStreak:0,doneToday:0,daysLit:[]};
+  S.pendingReport=null;save();renderAll();
+  switchScreen('scr-altar');
+  toast('第 '+S.cycle+' 循环，火继续。','掷骰 · 问新命');
+}
+
+/* ══════════════════════ 引导 ══════════════════════ */
+/* 演示辅助 */
+function showTabbar(v){const t=$('tabbar');if(t)t.style.display=v?'flex':'none';}
+function seedDemoTasks(){
+  if(S.tasks.length)return;
+  ['grow','habit'].forEach((c,i)=>{
+    const t=drawTask(c);
+    if(!t)return;
+    S.tasks.push({id:uid('td'),n:t.n,d:t.d,why:t.why,cat:t.cat,gotAt:S.day});
+  });
+  save();renderAll();
+}
+function demoRoll(done){
+  if(rolling||S.tasks.length>=3){done&&done();return;}
+  $('btn-roll').click();
+  setTimeout(()=>{done&&done();},3250);   // 骰子动画 2.7s + 翻卡
+}
+function openCustomDemo(){
+  if(!pendingTask)return;
+  $('custom-n').value=pendingTask.n||'';
+  $('custom-d').value=(pendingTask.d&&pendingTask.d!=='undefined')?pendingTask.d:'';
+  $('custom-cat').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.c===pendingTask.cat));
+  $('modal-custom').classList.add('show');
+}
+function closeCustomDemo(){$('modal-custom').classList.remove('show');}
+function acceptPending(){
+  closeCustomDemo();
+  if(pendingTask&&S.tasks.length<3)$('btn-accept').click();
+}
+
+const TUT=[
+  // idx 0：欢迎屏（独立屏，不走浮层）
+  null,
+  // idx 1：开屏 → 教留名 + 勾意向 + 点火
+  {step:'一', sel:'.ob-name', screen:'scr-onboard',
+   title:'留 名 · 选 火 向',
+   text:'<b>留名</b>是火种认得你的方式；<b>勾选意向</b>（可多选）决定签池偏向。<br>填好后点下方<b>「点火」</b>——也可以直接点这里右下角的按钮，我替你填好。',
+   textOld:'这里就是<b>第 1 步</b>——<b>留名</b>是火种认得你的方式，<b>勾选意向</b>（可多选）决定签池偏向。<br>你当初留的名已填回输入框里。',
+   hint:'现在请在下面填个名字 →'},
+  // idx 2：主屏 → 介绍火（并预置两张签，让界面有内容）
+  {step:'二', sel:'.altar-stage', screen:'scr-altar',
+   title:'这 是 你 的 火',
+   text:'中央是火，外环 <b>21 齿</b>是这一循环的 21 天——齿亮一天，就是那天烧过签。<br>火会随成签天数长大。<br><b>（已为你预置两张签作演示）</b>',
+   run:done=>{seedDemoTasks();done();}},
+  // idx 3：主屏 → 任务明细 + 去骰子
+  {step:'三', sel:'#task-list', screen:'scr-altar',
+   title:'今 日 命 签',
+   text:'这就是你的<b>任务明细</b>——每张签有名字、说明、还有一句「为什么」。<br>手里最多留 3 张；想再要，点底部<b>「骰」</b>去抽。',
+   },
+  // idx 4：骰子屏 → 自动掷
+  {step:'四', sel:'#btn-roll', screen:'scr-dice',
+   title:'掷',
+   text:'骰子决定签的<b>类别</b>（成长/修行/天命），签的<b>内容</b>由命运随机抽。<br><b>（马上替你掷一次看看）</b>',
+   run:done=>{demoRoll(done);}},
+  // idx 5：骰子屏 → 揭签结果
+  {step:'五', sel:'#reveal-zone', screen:'scr-dice',
+   title:'签 来 了',
+   text:'命运抽到的签会翻在这一面。<br>下面四个按钮：<b>接下此签</b> / <b>再掷一次</b> / <b>不满意·自拟</b> / <b>不要了</b>。',
+   },
+  // idx 6：骰子屏 → 打开自拟模态，展示文本框
+  {step:'六', sel:'#custom-n', screen:'scr-dice',
+   title:'不 满 意 · 自 拟',
+   text:'这就是<b>自拟的输入框</b>——名字填这里，下面选类别，还能补一句描述。填完点<b>「落此一签」</b>提交。<br>你写过的签会被记住，下次掷骰命运优先从你写的里抽。',
+   run:done=>{openCustomDemo();done();},
+   exit:()=>{closeCustomDemo();}},
+  // idx 7：主屏 → 自动接签，展示任务明细
+  {step:'七', sel:'#task-list', screen:'scr-altar',
+   title:'烧 签',
+   text:'接下签后，它就进了你的任务明细（已替你接下这张作演示）。<br>做完点<b>「完成此签」</b>把它烧掉——印记会留在「藏」里；不想做点<b>「释放」</b>，无惩罚。',
+   run:done=>{acceptPending();renderAll();setTimeout(()=>done(),260);}},
+  // idx 8：主屏 → 入夜
+  {step:'八', sel:'#btn-night', screen:'scr-altar',
+   title:'入 夜',
+   text:'今天到此为止时点<b>「入夜」</b>进入下一天。<br>至少烧一签，火才不会熄——<b>连燃日越长，火越大</b>。满 21 日会收到一封写给你的月签。',
+   }
+];
+
+function showTutorial(){
+  hideGuide();
+  $('app').classList.remove('guiding');
+  if(S.tutorialStep<=0){
+    showTabbar(false);
+    switchScreen('scr-welcome');
+    return;
+  }
+  showTutorialStep();
+}
+function centerTip(msg){
+  const app=$('app');
+  const aw=app.offsetWidth||400,ah=app.offsetHeight||800;
+  const tip=$('guide-tip');
+  $('guide-mask').style.display='block';$('guide-mask').style.background='rgba(6,5,2,.5)';
+  $('guide-spot').style.display='none';
+  tip.style.display='block';
+  tip.style.left=Math.max(16,(aw-300)/2)+'px';
+  tip.style.top=Math.max(20,(ah-(tip.offsetHeight||170))/2)+'px';
+  tip.style.transform='none';
+}
+function showTutorialStep(){
+  const n=S.tutorialStep,step=TUT[n];
+  if(!step){endTutorial();return;}
+  // 离开上一步的清理
+  const prev=TUT[n-1];
+  if(prev&&prev.exit)try{prev.exit();}catch(e){}
+  // 切屏 + 导航栏可见性
+  if(step.screen){
+    switchScreen(step.screen);
+    showTabbar(step.screen!=='scr-onboard');
+  }
+  $('app').classList.add('guiding');
+  // 第 1 步：已点火的老用户重看时，把当初留的名填回输入框，并回到已勾选的意向
+  if(n===1){
+    try{buildOnboardIntns();}catch(e){}
+    const nm=$('ob-name');
+    if(nm&&S.name)nm.value=S.name;
+  }
+  const dots=$('gt-dots');dots.innerHTML='';
+  for(let i=1;i<TUT.length;i++){const d=document.createElement('i');if(i===n)d.classList.add('on');dots.appendChild(d);}
+  const setNormal=()=>{
+    $('gt-step').textContent='第 '+step.step+' 步 · 共 '+(TUT.length-1)+' 步';
+    $('gt-t').innerHTML=(n===1&&S.onboarded&&step.textOld)?step.textOld:step.text;
+    $('gt-btn').style.display='';$('gt-skip').style.display='';
+    // 第 1 步且尚未点火：按钮直接代劳点火，避免用户卡在表单
+    $('gt-btn').textContent=(n===1&&!S.onboarded)?'点 火 · 进 入':'知 道 了';
+  };
+  hideGuide();
+  let shown=false;
+  const show=()=>{if(shown)return;shown=true;setNormal();requestAnimationFrame(()=>requestAnimationFrame(()=>positionGuide(step)));};
+  if(step.run){
+    // 演示期间：先把提示卡居中，告知正在真实操作，避免用户以为卡住
+    $('gt-step').textContent='演 示 中';
+    $('gt-t').innerHTML='<b>'+step.title+'</b><br>正在为你真实操作一遍，请看屏幕…';
+    $('gt-btn').style.display='none';$('gt-skip').style.display='none';
+    centerTip();
+    const finish=()=>{if(shown)return;show();};
+    try{step.run(finish);}catch(e){finish();}
+    setTimeout(finish,4600);
+  }
+  else show();
+}
+/* ─── 滚动跟随：spot/tip 跟着当前 screen 滚动重定位；目标出视口则提示居中 ─── */
+let _guideBoundScreen=null;
+let _guideRaf=0;
+function bindGuideScroll(screen){
+  if(_guideBoundScreen===screen)return;
+  unbindGuideScroll();
+  if(!screen)return;
+  _guideBoundScreen=screen;
+  screen.addEventListener('scroll',_onGuideScroll,{passive:true});
+  window.addEventListener('resize',_onGuideScroll,{passive:true});
+}
+function unbindGuideScroll(){
+  if(_guideBoundScreen){
+    _guideBoundScreen.removeEventListener('scroll',_onGuideScroll);
+    _guideBoundScreen=null;
+  }
+  window.removeEventListener('resize',_onGuideScroll);
+  cancelAnimationFrame(_guideRaf);
+}
+function _onGuideScroll(){
+  cancelAnimationFrame(_guideRaf);
+  _guideRaf=requestAnimationFrame(()=>{
+    const n=S.tutorialStep;
+    if(n<1||n>=TUT.length)return;
+    applyGuideLayout(TUT[n]);
+  });
+}
+function applyGuideLayout(step){
+  const app=$('app');
+  const aw=app.offsetWidth||400,ah=app.offsetHeight||800;
+  const spot=$('guide-spot'),tip=$('guide-tip');
+  let el=null;
+  if(step.sel){try{el=document.querySelector(step.sel);}catch(e){}}
+  // 无目标选择器：直接居中（不动 mask，靠 spot 阴影挖洞）
+  if(!el){
+    spot.style.display='none';
+    const th=tip.offsetHeight||170;
+    tip.style.left=Math.max(16,(aw-300)/2)+'px';
+    tip.style.top=Math.max(20,(ah-th)/2)+'px';
+    tip.style.transform='none';tip.style.display='block';
+    return;
+  }
+  let r;try{r=el.getBoundingClientRect();}catch(e){r={left:0,top:0,width:0,height:0};}
+  if(!r.width&&!r.height){spot.style.display='none';return;}
+  const ar=(()=>{try{return app.getBoundingClientRect();}catch(e){return{left:0,top:0};}})();
+  const inView=r.bottom>58&&r.top<ah-78;   // 与导航栏升层后的可见区一致
+  if(!inView){
+    // 目标滚出视口：spot 隐掉，tip 居中提示「目标不在视野」
+    spot.style.display='none';
+    const th=tip.offsetHeight||140;
+    tip.style.left=Math.max(16,(aw-300)/2)+'px';
+    tip.style.top=Math.max(20,(ah-th)/2)+'px';
+    tip.style.transform='none';tip.style.display='block';
+    tip.dataset.offscreen='1';
+    return;
+  }
+  tip.removeAttribute('data-offscreen');
+  const x=r.left-ar.left,y=r.top-ar.top,w=r.width,h=r.height;
+  spot.style.display='block';
+  spot.style.left=(x-10)+'px';spot.style.top=(y-10)+'px';
+  spot.style.width=(w+20)+'px';spot.style.height=(h+20)+'px';
+  // ─── Tip 智能选位：放到 target 对角象限的屏幕角落，永不挡 target 周围内容 ───
+  const tipW=300;
+  const tipH=tip.offsetHeight>0&&tip.offsetHeight<400?tip.offsetHeight:170;
+  const pad=16,topPad=16,bottomPad=88;   // 88 给底部导航栏 + 余量
+  // 4 个候选角落（每个角落 = 矩形 padding 16/16/88/16）
+  const corners=[
+    {key:'TL',left:pad,             top:topPad},
+    {key:'TR',left:aw-tipW-pad,     top:topPad},
+    {key:'BL',left:pad,             top:ah-tipH-bottomPad},
+    {key:'BR',left:aw-tipW-pad,     top:ah-tipH-bottomPad}
+  ];
+  // 选离 target 中心最远的角落；同时在角落加引线指向 target
+  const cx=x+w/2,cy=y+h/2;
+  let bestC=corners[0],bestDist=0;
+  for(const c of corners){
+    const qx=c.left+tipW/2,qy=c.top+tipH/2;
+    const d=Math.hypot(qx-cx,qy-cy);
+    if(d>bestDist){bestDist=d;bestC=c;}
+  }
+  // 角落离 target 太远时，落在"对侧"半屏（target 在上 → tip 在下半屏；偏左 → tip 在右侧）
+  // 距离阈值 = 屏幕对角线的 30%
+  const screenDiag=Math.hypot(aw,ah);
+  if(bestDist<screenDiag*0.3){
+    const onTop=cy<ah/2;
+    const onLeft=cx<aw/2;
+    if(onTop){
+      bestC.top=ah-tipH-bottomPad;            // 屏幕底部
+    }else{
+      bestC.top=topPad;                        // 屏幕顶部
+    }
+    if(onLeft){
+      bestC.left=aw-tipW-pad;                 // 屏幕右侧
+    }else{
+      bestC.left=pad;                          // 屏幕左侧
+    }
+  }
+  let tipLeft=bestC.left,tipTop=bestC.top;
+  // 边界兜底
+  tipLeft=Math.max(pad,Math.min(aw-tipW-pad,tipLeft));
+  tipTop=Math.max(topPad,Math.min(ah-tipH-bottomPad,tipTop));
+  tip.style.left=tipLeft+'px';tip.style.top=tipTop+'px';tip.style.transform='none';
+  // 标记位置（CSS 用 ::before 画引线）
+  tip.dataset.corner=bestC.key;
+  tip.style.display='block';
+}
+function positionGuide(step){
+  let el=null;
+  if(step.sel){try{el=document.querySelector(step.sel);}catch(e){}}
+  if(el){
+    try{el.scrollIntoView({block:'center',behavior:'instant'});}catch(e){
+      try{el.scrollIntoView({block:'center'});}catch(e2){}
+    }
+  }
+  // 给 scrollIntoView 留两帧时间落定，再定位
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    applyGuideLayout(step);
+    // 绑定当前 screen 的滚动监听（自动跟随）
+    const active=document.querySelector('.screen.active');
+    bindGuideScroll(active);
+  }));
+}
+function hideGuide(){
+  $('guide-mask').style.display='none';
+  $('guide-spot').style.display='none';
+  $('guide-tip').style.display='none';
+  $('guide-tip').removeAttribute('data-offscreen');
+  unbindGuideScroll();
+}
+function advanceTutorial(){
+  // 第 1 步尚未点火：按钮代劳点火（没填名就给个默认称呼）
+  if(S.tutorialStep===1&&!S.onboarded){
+    const nm=$('ob-name');
+    if(nm&&!String(nm.value||'').trim())nm.value='旅人';
+    $('ob-go').click();
+    return;
+  }
+  const cur=TUT[S.tutorialStep];
+  if(cur&&cur.exit)try{cur.exit();}catch(e){}
+  S.tutorialStep++;
+  if(S.tutorialStep>=TUT.length){endTutorial();return;}
+  save();showTutorialStep();
+}
+function endTutorial(){
+  const cur=TUT[S.tutorialStep];
+  if(cur&&cur.exit)try{cur.exit();}catch(e){}
+  closeCustomDemo();
+  S.tutorialDone=true;S.tutorialStep=0;save();hideGuide();
+  $('app').classList.remove('guiding');
+  showTabbar(!!S.onboarded);
+  toast('引导已关闭。','设 · 炉边 可重看');
+}
+$('gt-btn').addEventListener('click',advanceTutorial);
+$('gt-skip').addEventListener('click',endTutorial);
+$('welcome-go').addEventListener('click',()=>{
+  S.tutorialStep=1;save();
+  switchScreen('scr-onboard');buildOnboardIntns();showTabbar(false);
+  setTimeout(showTutorialStep,420);
+});
+$('welcome-skip').addEventListener('click',()=>{
+  S.tutorialDone=true;S.tutorialStep=0;save();hideGuide();
+  $('app').classList.remove('guiding');
+  showTabbar(!!S.onboarded);
+  if(S.onboarded)enterApp();
+  else{buildOnboardIntns();switchScreen('scr-onboard');}
+});
+
+/* ══════════════════════ 开场 ══════════════════════ */
+function buildOnboardIntns(){
+  const g=$('ob-intns');g.innerHTML='';
+  INTNS.forEach(i=>{
+    const b=document.createElement('button');
+    b.className='intn'+(S.intentions.includes(i.id)?' on':'');
+    b.dataset.i=i.id;
+    b.innerHTML='<div class="i-dot"></div><div class="i-n">'+i.n+'</div><div class="i-d">'+i.d+'</div>';
+    b.addEventListener('click',()=>b.classList.toggle('on'));
+    g.appendChild(b);
+  });
+}
+$('ob-go').addEventListener('click',()=>{
+  const name=$('ob-name').value.trim();
+  if(!name){toast('留个名字吧，火要认得你。');return;}
+  const on=[...$('ob-intns').querySelectorAll('.intn.on')].map(x=>x.dataset.i);
+  S.name=name;S.intentions=on.length?on:['read'];
+  S.onboarded=true;save();
+  enterApp();
+  toast('火种已燃。','欢迎回来，'+S.name);
+  if(!S.tutorialDone){
+    S.tutorialStep=2;save();
+    setTimeout(showTutorialStep,420);
+  }
+});
+function enterApp(){
+  $('tabbar').style.display='flex';
+  buildOnboardIntns();
+  renderAll();
+  if(S.pendingReport){switchScreen('scr-report');renderReport();}
+  else switchScreen('scr-altar');
+}
+
+/* ══════════════════════ 导航 & 演示 ══════════════════════ */
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  const id=t.dataset.scr;
+  if(id==='scr-report'&&!S.pendingReport){toast('月签尚未生成。','第二十一夜之后，它会出现');return;}
+  switchScreen(id);
+  if(id==='scr-report')renderReport();
+  if(id==='scr-altar')renderAltar();
+  if(id==='scr-dice')renderDice();
+  if(id==='scr-vault')renderVault();
+}));
+$('ff1').addEventListener('click',()=>fastForward(1));
+$('ff7').addEventListener('click',()=>fastForward(7));
+$('ff21').addEventListener('click',()=>fastForward(99));
+$('btn-retutor').addEventListener('click',()=>{
+  // 从第 1 步（留名）开始完整重看，不吃掉第一步
+  S.tutorialDone=false;S.tutorialStep=1;save();
+  switchScreen('scr-altar');showTabbar(true);
+  setTimeout(showTutorialStep,200);
+});
+function fastForward(n){
+  if(!S.onboarded){toast('先点火，再赶路。');return;}
+  for(let i=0;i<n&&S.day<=21;i++){
+    // 模拟当日行为：掷签补位 + 70% 完成
+    while(S.tasks.length<3&&Math.random()<0.75){
+      const t=drawTask(Math.random()<0.45?'grow':(Math.random()<0.8?'habit':'fate'));
+      if(!t)break;
+      S.tasks.push({id:uid(),n:t.n,d:t.d,why:t.why,cat:t.cat,gotAt:S.day});
+      S.cycleStats.rolled++;
+    }
+    S.tasks.forEach(t=>{
+      if(Math.random()<0.7){
+        S.cycleStats.done++;S.cycleStats.doneToday++;S.cycleStats.byCat[t.cat]++;
+        if(!S.cycleStats.daysLit.includes(S.day))S.cycleStats.daysLit.push(S.day);
+        S.history.push({cycle:S.cycle,day:S.day,cat:t.cat,n:t.n});
+        S.imprints.push({n:t.n,cat:t.cat});
+      }
+    });
+    S.tasks=[];
+    checkTitles();
+    endDay(true);
+  }
+  checkTitles();
+  renderAll();
+  if(S.pendingReport){switchScreen('scr-report');renderReport();toast('时间之沙已流尽。','月签 · 已生成');}
+  else toast('时间之沙流过 '+n+' 日。','现在是第 '+S.day+' 日');
+}
+$('btn-reset').addEventListener('click',()=>{
+  localStorage.removeItem(KEY);S=freshState();
+  $('tabbar').style.display='none';
+  buildOnboardIntns();$('ob-name').value='';
+  hideGuide();S.tutorialDone=false;S.tutorialStep=0;
+  switchScreen('scr-welcome');
+  toast('火种已熄，灰烬归零。','欢迎再来');
+});
+
+/* ══════════════════════ 启动 ══════════════════════ */
+load();
+buildOnboardIntns();
+hideGuide();
+if(!S.tutorialDone){
+  if(S.tutorialStep>=1){
+    // 老用户被强制重看（引导改版）：直接进主流程并浮层演示
+    enterApp();
+    setTimeout(showTutorialStep,700);
+  }else{
+    showTabbar(false);
+    switchScreen('scr-welcome');
+  }
+}
+else if(S.onboarded)enterApp();
+else{document.documentElement.style.setProperty('--fscale','0.55');showTabbar(false);switchScreen('scr-onboard');}
+</script>
+</body>
+</html>
